@@ -22,6 +22,7 @@ export class Appointmentexercise extends BaseEntity {
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP" })
     updated_at!: Date
 
+
     @ManyToOne(() => Appointment, (appointment) => 
     appointment.appointments)
     @JoinColumn({ name: "appointment_id" })

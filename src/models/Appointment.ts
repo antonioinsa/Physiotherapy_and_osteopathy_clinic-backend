@@ -51,6 +51,7 @@ export class Appointment extends BaseEntity {
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP" })
     updated_at!: Date
 
+    
     @ManyToOne(() => User, (user) => user.userAppointments)
     @JoinColumn({ name: "user_id" })
     userAppointment!: User;
