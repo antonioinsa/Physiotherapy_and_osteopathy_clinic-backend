@@ -1,6 +1,7 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { Appointment } from "./Appointment"
 
-@Entity("clients")
+@Entity("users")
 export class User extends BaseEntity {
 
   @PrimaryGeneratedColumn()
@@ -48,10 +49,10 @@ export class User extends BaseEntity {
   @Column()
   role!: string
 
-  @Column()
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created_at!: Date
 
-  @Column()
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP" })
   updated_at!: Date
 
   @OneToMany(() => Appointment, (appointment) => appointment.userAppointment)
