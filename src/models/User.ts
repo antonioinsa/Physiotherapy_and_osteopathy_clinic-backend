@@ -12,7 +12,7 @@ export class User extends BaseEntity {
 
   @Column()
   lastName!: string
-  
+
   @Column()
   phone!: string
 
@@ -30,7 +30,7 @@ export class User extends BaseEntity {
 
   @Column()
   street!: string
-  
+
   @Column()
   door!: string
 
@@ -57,5 +57,4 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Appointment, (appointment) => appointment.userAppointment)
   userAppointments!: Appointment[]
-
 }

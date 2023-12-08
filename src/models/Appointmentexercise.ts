@@ -5,7 +5,7 @@ import { Exercise } from "./Exercise";
 
 
 @Entity("appointmentsexercises")
-export class Appointmentexercise extends BaseEntity {
+export class AppointmentExercise extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id!: number
@@ -23,15 +23,13 @@ export class Appointmentexercise extends BaseEntity {
     updated_at!: Date
 
 
-    @ManyToOne(() => Appointment, (appointment) => 
-    appointment.appointments)
+    @ManyToOne(() => Appointment, (appointment) =>
+        appointment.appointments)
     @JoinColumn({ name: "appointment_id" })
-    appointmentAppointmentexercise!: Appointment;
+    appointmentAppointmentExercise!: Appointment;
 
-    @ManyToOne(() => Exercise, (exercise) => 
-    exercise.exercises)
+    @ManyToOne(() => Exercise, (exercise) =>
+        exercise.exercises)
     @JoinColumn({ name: "exercise_id" })
-    exerciseAppointmentexercise!: Exercise;
-
-    
+    exerciseAppointmentExercise!: Exercise;
 }

@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { User } from "./User"
-import { Appointmentexercise } from "./Appointmentexercise"
+import { AppointmentExercise } from "./Appointmentexercise"
 
 enum hours {
     H09_00 = "09:00",
@@ -27,9 +27,9 @@ export class Appointment extends BaseEntity {
     @Column()
     date!: string
 
-    @Column({type: "enum", enum: hours})
-    hour!: hours 
-    
+    @Column({ type: "enum", enum: hours })
+    hour!: hours
+
     @Column({ type: "decimal", precision: 4, scale: 2, default: 40 })
     price!: number
 
@@ -51,16 +51,12 @@ export class Appointment extends BaseEntity {
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP" })
     updated_at!: Date
 
-    
+
     @ManyToOne(() => User, (user) => user.userAppointments)
     @JoinColumn({ name: "user_id" })
     userAppointment!: User;
 
-    @OneToMany(() => Appointmentexercise, (appointment) => 
-    appointment.appointmentAppointmentexercise)
-    appointments!: Appointmentexercise[]
-
-    
-
-
+    @OneToMany(() => AppointmentExercise, (appointment) =>
+        appointment.appointmentAppointmentExercise)
+    appointments!: AppointmentExercise[]
 }

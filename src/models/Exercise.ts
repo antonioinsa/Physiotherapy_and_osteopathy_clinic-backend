@@ -1,5 +1,5 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Appointmentexercise } from "./Appointmentexercise";
+import { AppointmentExercise } from "./Appointmentexercise";
 
 enum exercises {
     flexibility = "Flexibility",
@@ -18,7 +18,7 @@ export class Exercise extends BaseEntity {
     @Column()
     activity!: string
 
-    @Column({type: "enum", enum: exercises})
+    @Column({ type: "enum", enum: exercises })
     type!: exercises
 
     @Column()
@@ -31,7 +31,7 @@ export class Exercise extends BaseEntity {
     updated_at!: Date
 
 
-    @OneToMany(() => Appointmentexercise, (exercise) => 
-    exercise.appointmentAppointmentexercise)
-    exercises!: Appointmentexercise[]
+    @OneToMany(() => AppointmentExercise, (exercise) =>
+        exercise.appointmentAppointmentExercise)
+    exercises!: AppointmentExercise[]
 }
