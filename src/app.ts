@@ -1,10 +1,13 @@
 import express from "express"
-
+import cors from "cors"
 
 const app = express()
 app.use(express.json())
 
-//rutas
+app.use(cors())
+app.use('/users', routerUsers)
+app.use('/appointments', routerAppointments)
+app.use('/exercises', routerExercises)
 
 
 export default app
