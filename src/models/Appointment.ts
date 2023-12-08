@@ -1,5 +1,6 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { User } from "./User"
+import { Appointmentexercise } from "./Appointmentexercise"
 
 enum hours {
     H09_00 = "09:00",
@@ -54,9 +55,9 @@ export class Appointment extends BaseEntity {
     @JoinColumn({ name: "user_id" })
     userAppointment!: User;
 
-    @OneToMany(() => Appointment, (appointmentexercise) => 
-    appointmentexercise.appointmentAppointmentexercise)
-  userAppointments!: Appointment[]
+    @OneToMany(() => Appointmentexercise, (appointment) => 
+    appointment.appointmentAppointmentexercise)
+    appointments!: Appointmentexercise[]
 
     
 
