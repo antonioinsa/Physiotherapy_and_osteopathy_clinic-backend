@@ -1,5 +1,5 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Orderproduct } from "./Orderproduct";
+import { OrderProduct } from "./OrderProduct";
 
 
 @Entity("products")
@@ -27,7 +27,7 @@ export class Product extends BaseEntity {
     updated_at!: Date
 
 
-    @OneToMany(() => Orderproduct, (product) =>
+    @OneToMany(() => OrderProduct, (product) =>
         product.productOrderProduct)
-        products!: Orderproduct[]
+        products!: OrderProduct[]
 }

@@ -56,6 +56,7 @@ export class User extends BaseEntity {
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP" })
   updated_at!: Date
 
+  
   @OneToMany(() => Appointment, (appointment) => appointment.userAppointment)
   userAppointments!: Appointment[]
 

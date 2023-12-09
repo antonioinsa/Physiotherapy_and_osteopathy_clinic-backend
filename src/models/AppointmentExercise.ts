@@ -4,7 +4,7 @@ import { Exercise } from "./Exercise";
 
 
 
-@Entity("appointmentsexercises")
+@Entity("appointmentexercise")
 export class AppointmentExercise extends BaseEntity {
 
     @PrimaryGeneratedColumn()

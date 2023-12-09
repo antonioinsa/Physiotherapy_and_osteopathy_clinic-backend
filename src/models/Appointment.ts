@@ -1,6 +1,7 @@
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { BaseEntity, Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { User } from "./User"
-import { AppointmentExercise } from "./Appointmentexercise"
+import { AppointmentExercise } from "./AppointmentExercise"
+import { Exercise } from "./Exercise"
 
 enum hours {
     H09_00 = "09:00",
@@ -51,6 +52,19 @@ export class Appointment extends BaseEntity {
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP" })
     updated_at!: Date
 
+
+    @ManyToMany(() => Exercise)
+    @JoinTable({
+        name: "appointmentexercise",
+        joinColumn: {
+            name: "appointment_id",
+            referencedColumnName: "id"
+        },
+        inverseJoinColumn: {
+            name: "exercise_id",
+            referencedColumnName: "id"
+        }
+    }) appointmentExercise!: Exercise[]
 
     @ManyToOne(() => User, (user) => user.userAppointments)
     @JoinColumn({ name: "user_id" })

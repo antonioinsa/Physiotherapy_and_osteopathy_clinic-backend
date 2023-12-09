@@ -4,8 +4,8 @@ import { Product } from "./Product";
 
 
 
-@Entity("orderproducts")
-export class Orderproduct extends BaseEntity {
+@Entity("orderproduct")
+export class OrderProduct extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id!: number

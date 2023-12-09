@@ -53,10 +53,6 @@ export class Appointments1702052671982 implements MigrationInterface {
                         type: "int",
                     },
                     {
-                        name: "appointmentexercise_id",
-                        type: "int",
-                    },
-                    {
                         name: "is_active",
                         type: "boolean",
                         default: true,
@@ -77,12 +73,6 @@ export class Appointments1702052671982 implements MigrationInterface {
                     {
                         columnNames: ["user_id"],
                         referencedTableName: "users",
-                        referencedColumnNames: ["id"],
-                        onDelete: "CASCADE",
-                    },
-                    {
-                        columnNames: ["appointmentexercise_id"],
-                        referencedTableName: "appointmentexercise",
                         referencedColumnNames: ["id"],
                         onDelete: "CASCADE",
                     },

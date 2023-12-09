@@ -12,8 +12,8 @@ import { Appointment } from "./models/Appointment"
 import { Exercise } from "./models/Exercise"
 import { Order } from "./models/Order"
 import { Product } from "./models/Product"
-import { AppointmentExercise } from "./models/Appointmentexercise"
-import { Orderproduct } from "./models/Orderproduct"
+import { AppointmentExercise } from "./models/AppointmentExercise"
+import { OrderProduct } from "./models/OrderProduct"
 
 
 export const AppDataSource = new DataSource({
@@ -24,19 +24,21 @@ export const AppDataSource = new DataSource({
     password: "password",
     database: "fandoclinic",
     entities: [User,
-        Appointment,
         Exercise,
-        Order,
         Product,
-        AppointmentExercise,
-        Orderproduct],
+        Order,
+        OrderProduct,
+        Appointment,
+        AppointmentExercise
+        ],
     migrations: [Users1702052633207,
-        Appointments1702052671982,
         Exercises1702052685809,
-        Appointmentsexercises1702052736388,
+        Products1702052852868,
         Orders1702052827295,
         Orderproduct1702052840296,
-        Products1702052852868],
+        Appointments1702052671982,
+        Appointmentsexercises1702052736388
+        ],
     synchronize: false,
     logging: false,
 })

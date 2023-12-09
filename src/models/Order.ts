@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./User";
-import { Orderproduct } from "./Orderproduct";
+import { OrderProduct } from "./OrderProduct";
 
 enum process {
     pending = "Pending",
@@ -31,8 +31,8 @@ export class Order extends BaseEntity {
     @JoinColumn({ name: "user_id" })
     userOrders!: User;
 
-    @OneToMany(() => Orderproduct, (order) =>
+    @OneToMany(() => OrderProduct, (order) =>
         order.orderOrderProduct)
-    orders!: Orderproduct[]
+    orders!: OrderProduct[]
 }
 
