@@ -7,6 +7,13 @@ import { Appointmentsexercises1702052736388 } from "./migrations/1702052736388-a
 import { Orders1702052827295 } from "./migrations/1702052827295-orders"
 import { Orderproduct1702052840296 } from "./migrations/1702052840296-orderproduct"
 import { Products1702052852868 } from "./migrations/1702052852868-products"
+import { User } from "./models/User"
+import { Appointment } from "./models/Appointment"
+import { Exercise } from "./models/Exercise"
+import { Order } from "./models/Order"
+import { Product } from "./models/Product"
+import { AppointmentExercise } from "./models/Appointmentexercise"
+import { Orderproduct } from "./models/Orderproduct"
 
 
 export const AppDataSource = new DataSource({
@@ -16,13 +23,19 @@ export const AppDataSource = new DataSource({
     username: "root",
     password: "password",
     database: "fandoclinic",
-    entities: [],
-    migrations: [Users1702052633207, 
-        Appointments1702052671982, 
-        Exercises1702052685809, 
-        Appointmentsexercises1702052736388, 
+    entities: [User,
+        Appointment,
+        Exercise,
+        Order,
+        Product,
+        AppointmentExercise,
+        Orderproduct],
+    migrations: [Users1702052633207,
+        Appointments1702052671982,
+        Exercises1702052685809,
+        Appointmentsexercises1702052736388,
         Orders1702052827295,
-        Orderproduct1702052840296, 
+        Orderproduct1702052840296,
         Products1702052852868],
     synchronize: false,
     logging: false,

@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { AppointmentExercise } from "./Appointmentexercise";
 
-enum exercises {
+enum exercisesClass {
     flexibility = "Flexibility",
     tendonitis = "Tendonitis",
     neuropahty = "Neuropahty",
@@ -18,8 +18,8 @@ export class Exercise extends BaseEntity {
     @Column()
     activity!: string
 
-    @Column({ type: "enum", enum: exercises })
-    type!: exercises
+    @Column({ type: "enum", enum: exercisesClass })
+    type!: exercisesClass
 
     @Column()
     description!: string
