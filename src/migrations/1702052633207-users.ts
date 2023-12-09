@@ -33,6 +33,7 @@ export class Users1702052633207 implements MigrationInterface {
                         name: "email",
                         type: "varchar",
                         length: "100",
+                        isUnique: true,
                     },
                     {
                         name: "password",
@@ -41,11 +42,6 @@ export class Users1702052633207 implements MigrationInterface {
                     },
                     {
                         name: "documentId",
-                        type: "varchar",
-                        length: "20",
-                    },
-                    {
-                        name: "creditCard",
                         type: "varchar",
                         length: "20",
                     },
@@ -83,6 +79,7 @@ export class Users1702052633207 implements MigrationInterface {
                         name: "role",
                         type: "varchar",
                         length: "45",
+                        default: "user"
                     },
                     {
                         name: "created_at",

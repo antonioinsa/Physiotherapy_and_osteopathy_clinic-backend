@@ -27,9 +27,6 @@ export class User extends BaseEntity {
   documentId!: string
 
   @Column()
-  creditCard!: string
-
-  @Column()
   street!: string
 
   @Column()
