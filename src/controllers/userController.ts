@@ -6,12 +6,15 @@ import {
     validateEmail,
     validatePassword,
     validateDni,
-    validatePhone
+    validatePhone,
+    validateName,
+    validateLastName
 } from '../validations/validations'
 
 const register = async (req: Request, res: Response) => {
     try {
-        const { name,
+        const {
+            name,
             lastName,
             phone,
             password,
@@ -21,7 +24,24 @@ const register = async (req: Request, res: Response) => {
             zipCode,
             town,
             country,
-            email } = req.body
+            email
+        } = req.body
+
+        if (validateName(name)) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: validateName(name)
+                })
+        }
+
+        if (validateLastName(lastName)) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: validateLastName(lastName)
+                })
+        }
 
         if (validatePhone(phone)) {
             return res.status(400).json
@@ -39,7 +59,11 @@ const register = async (req: Request, res: Response) => {
                 })
         }
 
-        if (await User.findOneBy({ email })) {
+        if (await User.findOneBy
+            ({
+                email
+            })
+        ) {
             return res.status(400).json
                 ({
                     success: false,
@@ -47,7 +71,11 @@ const register = async (req: Request, res: Response) => {
                 })
         }
 
-        if (await User.findOneBy({ documentId })) {
+        if (await User.findOneBy
+            ({
+                documentId
+            })
+        ) {
             return res.status(400).json
                 ({
                     success: false,
@@ -168,9 +196,9 @@ const login = async (req: Request, res: Response) => {
 
 const account = async (req: Request, res: Response) => {
     try {
-        const user = await User.findOneBy
+        const user = await User.findOne
             ({
-                id: req.token.id
+                where: { id: req.token.id }
             })
 
         if (!user) {
@@ -198,4 +226,113 @@ const account = async (req: Request, res: Response) => {
     }
 }
 
-export { register, login, account }
+const updateUserById = async (req: Request, res: Response) => {
+    try {
+        const {
+            name,
+            lastName,
+            phone,
+            email,
+            password,
+            street,
+            door,
+            zipCode,
+            town,
+            country
+        } = req.body
+
+        await User.findOneBy
+            (
+                { id: req.token.id }
+
+            )
+
+        if (validateName(name)) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: validateName(name)
+                })
+        }
+
+        if (validateLastName(lastName)) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: validateLastName(lastName)
+                })
+        }
+
+        if (validatePhone(phone)) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: validatePhone(phone)
+                })
+        }
+
+        if (validateEmail(email)) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: validateEmail(email)
+                })
+        }
+
+        if (validatePassword(password)) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: validatePassword(password)
+                })
+        }
+
+        if (req.token.role !== 'admin') {
+
+            const encrytedPassword = await bcrypt.hash(password, 5)
+
+            await User.update
+                (
+                    {
+                        id: req.token.id
+                    },
+                    {
+                        name,
+                        lastName,
+                        phone,
+                        email,
+                        password: encrytedPassword,
+                        street,
+                        door,
+                        zipCode,
+                        town,
+                        country
+                    }
+                )
+            const updateClient = await User.findOneBy
+                ({
+                    id: req.token.id
+                })
+                
+            return res.status(200).json({
+                success: true,
+                message: 'Updated user',
+                data: updateClient
+            })
+        }
+
+    } catch (error) {
+        return res.status(500).json
+            ({
+                success: false,
+                message: 'User cannot be updated',
+                error: error
+            })
+    }
+}
+
+
+
+
+
+export { register, login, account, updateUserById }

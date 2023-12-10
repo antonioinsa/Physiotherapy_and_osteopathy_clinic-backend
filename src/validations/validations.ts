@@ -19,7 +19,7 @@ const validateEmail = (email: string) => {
 }
 
 const validatePassword = (password: string) => {
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,12}$/
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,12}$/
 
     if (!passwordRegex.test(password)) {
         return 'Password must be between 6 and 12 characters and contain at least one lowercase letter, one uppercase letter, one number, and one special character'
@@ -40,7 +40,7 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$
 }
 
 const validateDni = (dni: string) => {
-const dniRegex = /^[0-9]{8}[A-Za-z]$/
+    const dniRegex = /^[0-9]{8}[A-Za-z]$/
 
     if (!dniRegex.test(dni)) {
         return 'Document ID is not valid'
@@ -60,7 +60,7 @@ const dniRegex = /^[0-9]{8}[A-Za-z]$/
 }
 
 const validatePhone = (phone: string) => {
-const spanishPhoneRegex = /^(?:\+34|0034|34)?[6-9]\d{8}$/
+    const spanishPhoneRegex = /^(?:\+34|0034|34)?[6-9]\d{8}$/
 
     if (!spanishPhoneRegex.test(phone)) {
         return 'Phone is not valid'
@@ -79,6 +79,24 @@ const spanishPhoneRegex = /^(?:\+34|0034|34)?[6-9]\d{8}$/
     }
 }
 
+const validateName = (name: string) => {
+    if (name !== undefined && name.trim() !== '' && name.length >= 50) {
+        return 'Maximum 50 characters'
+    }
+}
+
+const validateLastName = (lastName: string) => {
+    if (lastName !== undefined && lastName.trim() !== '' && lastName.length >= 50) {
+        return 'Maximum 50 characters'
+    }
+}
 
 
-export { validateEmail, validatePassword, validateDni, validatePhone }
+export {
+    validateEmail,
+    validatePassword,
+    validateDni,
+    validatePhone,
+    validateName,
+    validateLastName
+}
