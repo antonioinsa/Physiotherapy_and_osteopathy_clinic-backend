@@ -313,7 +313,7 @@ const updateUserById = async (req: Request, res: Response) => {
                 ({
                     id: req.token.id
                 })
-                
+
             return res.status(200).json({
                 success: true,
                 message: 'Updated user',
@@ -331,8 +331,33 @@ const updateUserById = async (req: Request, res: Response) => {
     }
 }
 
+const deleteUserById = async (req: Request, res: Response) => {
+    try {
+        await User.findOneBy
+            (
+                { id: req.token.id }
+            )
+        if (req.token.role !== 'admin') {
+            await User.delete
+                (
+                    { id: req.token.id }
+                )
+
+            return res.status(200).json
+                ({
+                    success: true,
+                    message: 'User deleted'
+                })
+        }
+    } catch (error) {
+        return res.status(500).json
+            ({
+                success: false,
+                message: 'User cannot be deleted',
+                error: error
+            })
+    }
+}
 
 
-
-
-export { register, login, account, updateUserById }
+export { register, login, account, updateUserById, deleteUserById }
