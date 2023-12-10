@@ -2,6 +2,12 @@ import { Request, Response } from 'express'
 import { User } from '../models/User'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import {
+    spanishPhoneRegex,
+    emailRegex,
+    passwordRegex,
+    dniRegex
+} from '../validations/validations'
 
 const register = async (req: Request, res: Response) => {
     try {
@@ -16,10 +22,6 @@ const register = async (req: Request, res: Response) => {
             town,
             country,
             email } = req.body
-
-        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,20}$/
-        const dniRegex = /^[0-9]{8}[A-Za-z]$/
-        const spanishPhoneRegex = /^(?:\+34|0034|34)?[6-9]\d{8}$/
 
         if (!spanishPhoneRegex.test(phone)) {
             return res.status(400).json
@@ -45,11 +47,11 @@ const register = async (req: Request, res: Response) => {
                 })
         }
 
-        if (password.length < 6 || password.length > 12) {
+        if (!passwordRegex.test(password)) {
             return res.status(400).json
                 ({
                     success: false,
-                    message: 'Password must be between 6 and 12 characters'
+                    message: 'Password must be between 6 and 12 characters and contain at least one lowercase letter, one uppercase letter, one number, and one special character'
                 })
         }
 
@@ -78,7 +80,7 @@ const register = async (req: Request, res: Response) => {
 
         return res.status(200).json
             ({
-                sucess: true,
+                success: true,
                 message: 'User created',
                 token: newUser
             })
@@ -86,7 +88,7 @@ const register = async (req: Request, res: Response) => {
     } catch (error) {
         return res.status(500).json
             ({
-                sucess: false,
+                success: false,
                 message: 'Something went wrong',
                 error: error
             })
@@ -97,12 +99,10 @@ const login = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body
 
-        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,20}$/
-
         if (!emailRegex.test(email)) {
             return res.status(400).json
                 ({
-                    sucess: false,
+                    success: false,
                     message: 'Email format is not valid'
                 })
         }
@@ -115,7 +115,7 @@ const login = async (req: Request, res: Response) => {
         if (!user) {
             return res.status(401).json
                 ({
-                    sucess: false,
+                    success: false,
                     message: 'User or password is not valid'
                 })
         }
@@ -123,7 +123,7 @@ const login = async (req: Request, res: Response) => {
         if (!bcrypt.compareSync(password, user.password)) {
             return res.status(401).json
                 ({
-                    sucess: false,
+                    success: false,
                     message: 'User or password is not valid'
                 })
         }
@@ -131,7 +131,7 @@ const login = async (req: Request, res: Response) => {
         const token = jwt.sign
             (
                 {
-                    userId: user.id,
+                    id: user.id,
                     email: user.email,
                     role: user.role
                 },
@@ -143,20 +143,51 @@ const login = async (req: Request, res: Response) => {
             )
         return res.status(200).json
             ({
-                sucess: true,
+                success: true,
                 message: 'User logged',
-                token
+                token: token
             })
 
     } catch (error) {
         return res.status(500).json
             ({
-                sucess: false,
-                message: 'User or password is not valid',
+                success: false,
+                message: 'Cant be logged',
                 error: error
             })
     }
 }
 
+const account = async (req: Request, res: Response) => {
+    try {
+        const user = await User.findOneBy
+            ({
+                id: req.token.id
+            })
 
-export { register, login }
+        if (!user) {
+            return res.status(401).json
+                ({
+                    success: false,
+                    message: 'Session expired'
+                })
+        }
+
+        return res.status(200).json
+            ({
+                success: true,
+                message: 'User retrieved',
+                data: user
+            })
+
+    } catch (error) {
+        return res.status(500).json
+            ({
+                success: false,
+                message: 'User profile cannot be retrieved',
+                error: error
+            })
+    }
+}
+
+export { register, login, account }
