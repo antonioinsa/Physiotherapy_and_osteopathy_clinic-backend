@@ -12,26 +12,26 @@ export class Appointmentsexercises1702052736388 implements MigrationInterface {
                         type: "int",
                         isPrimary: true,
                         isGenerated: true,
-                        generationStrategy: "increment",
+                        generationStrategy: "increment"
                     },
                     {
                         name: "appointment_id",
-                        type: "int",
+                        type: "int"
                     },
                     {
                         name: "exercise_id",
-                        type: "int",
+                        type: "int"
                     },
                     {
                         name: "created_at",
                         type: "timestamp",
-                        default: "CURRENT_TIMESTAMP",
+                        default: "CURRENT_TIMESTAMP"
                     },
                     {
                         name: "updated_at",
                         type: "timestamp",
                         default: "CURRENT_TIMESTAMP",
-                        onUpdate: "CURRENT_TIMESTAMP",
+                        onUpdate: "CURRENT_TIMESTAMP"
                     },
                 ],
                 foreignKeys: [
@@ -39,13 +39,13 @@ export class Appointmentsexercises1702052736388 implements MigrationInterface {
                         columnNames: ["appointment_id"],
                         referencedTableName: "appointments",
                         referencedColumnNames: ["id"],
-                        onDelete: "CASCADE",
+                        onDelete: "CASCADE"
                     },
                     {
                         columnNames: ["exercise_id"],
                         referencedTableName: "exercises",
                         referencedColumnNames: ["id"],
-                        onDelete: "CASCADE",
+                        onDelete: "CASCADE"
                     },
                 ],
             }),

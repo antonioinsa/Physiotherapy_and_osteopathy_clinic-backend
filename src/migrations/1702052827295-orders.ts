@@ -12,11 +12,11 @@ export class Orders1702052827295 implements MigrationInterface {
                         type: "int",
                         isPrimary: true,
                         isGenerated: true,
-                        generationStrategy: "increment",
+                        generationStrategy: "increment"
                     },
                     {
                         name: "user_id",
-                        type: "int",
+                        type: "int"
                     },
                     {
                         name: "status",
@@ -30,13 +30,13 @@ export class Orders1702052827295 implements MigrationInterface {
                     {
                         name: "created_at",
                         type: "timestamp",
-                        default: "CURRENT_TIMESTAMP",
+                        default: "CURRENT_TIMESTAMP"
                     },
                     {
                         name: "updated_at",
                         type: "timestamp",
                         default: "CURRENT_TIMESTAMP",
-                        onUpdate: "CURRENT_TIMESTAMP",
+                        onUpdate: "CURRENT_TIMESTAMP"
                     },
                 ],
                 foreignKeys: [
@@ -44,7 +44,7 @@ export class Orders1702052827295 implements MigrationInterface {
                         columnNames: ["user_id"],
                         referencedTableName: "users",
                         referencedColumnNames: ["id"],
-                        onDelete: "CASCADE",
+                        onDelete: "CASCADE"
                     },
                 ],
             }),

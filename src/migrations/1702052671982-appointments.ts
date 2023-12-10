@@ -12,12 +12,12 @@ export class Appointments1702052671982 implements MigrationInterface {
                         type: "int",
                         isPrimary: true,
                         isGenerated: true,
-                        generationStrategy: "increment",
+                        generationStrategy: "increment"
                     },
                     {
                         name: "date",
                         type: "date",
-                        isNullable: false,
+                        isNullable: false
                     },
                     {
                         name: "hour",
@@ -30,7 +30,7 @@ export class Appointments1702052671982 implements MigrationInterface {
                             "14:00",
                             "16:00",
                             "17:15",
-                            "18:30",
+                            "18:30"
                         ],
                     },
                     {
@@ -38,7 +38,7 @@ export class Appointments1702052671982 implements MigrationInterface {
                         type: "decimal",
                         precision: 4,
                         scale: 2,
-                        default: 40,
+                        default: 40
                     },
                     {
                         name: "service",
@@ -50,23 +50,23 @@ export class Appointments1702052671982 implements MigrationInterface {
                     },
                     {
                         name: "user_id",
-                        type: "int",
+                        type: "int"
                     },
                     {
                         name: "is_active",
                         type: "boolean",
-                        default: true,
+                        default: true
                     },
                     {
                         name: "created_at",
                         type: "timestamp",
-                        default: "CURRENT_TIMESTAMP",
+                        default: "CURRENT_TIMESTAMP"
                     },
                     {
                         name: "updated_at",
                         type: "timestamp",
                         default: "CURRENT_TIMESTAMP",
-                        onUpdate: "CURRENT_TIMESTAMP",
+                        onUpdate: "CURRENT_TIMESTAMP"
                     },
                 ],
                 foreignKeys: [
@@ -74,7 +74,7 @@ export class Appointments1702052671982 implements MigrationInterface {
                         columnNames: ["user_id"],
                         referencedTableName: "users",
                         referencedColumnNames: ["id"],
-                        onDelete: "CASCADE",
+                        onDelete: "CASCADE"
                     },
                 ]
             }),

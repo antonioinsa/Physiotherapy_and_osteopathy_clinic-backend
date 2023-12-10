@@ -12,12 +12,12 @@ export class Exercises1702052685809 implements MigrationInterface {
                         type: "int",
                         isPrimary: true,
                         isGenerated: true,
-                        generationStrategy: "increment",
+                        generationStrategy: "increment"
                     },
                     {
                         name: "activity",
                         type: "varchar",
-                        length: "255",
+                        length: "255"
                     },
                     {
                         name: "type",
@@ -27,24 +27,24 @@ export class Exercises1702052685809 implements MigrationInterface {
                             "Tendonitis",
                             "Neuropahty",
                             "Cervical",
-                            "Hyperkyphosis",
+                            "Hyperkyphosis"
                         ],
                     },
                     {
                         name: "description",
                         type: "varchar",
-                        length: "255",
+                        length: "255"
                     },
                     {
                         name: "created_at",
                         type: "timestamp",
-                        default: "CURRENT_TIMESTAMP",
+                        default: "CURRENT_TIMESTAMP"
                     },
                     {
                         name: "updated_at",
                         type: "timestamp",
                         default: "CURRENT_TIMESTAMP",
-                        onUpdate: "CURRENT_TIMESTAMP",
+                        onUpdate: "CURRENT_TIMESTAMP"
                     },
                 ],
             }),

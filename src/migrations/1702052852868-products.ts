@@ -12,39 +12,39 @@ export class Products1702052852868 implements MigrationInterface {
                         type: "int",
                         isPrimary: true,
                         isGenerated: true,
-                        generationStrategy: "increment",
+                        generationStrategy: "increment"
                     },
                     {
                         name: "article",
                         type: "varchar",
-                        length: "255",
+                        length: "255"
                     },
                     {
                         name: "description",
                         type: "varchar",
-                        length: "255",
+                        length: "255"
                     },
                     {
                         name: "price",
                         type: "decimal",
                         precision: 5,
-                        scale: 2,
+                        scale: 2
                     },
                     {
                         name: "stock",
                         type: "varchar",
-                        length: "10",
+                        length: "10"
                     },
                     {
                         name: "created_at",
                         type: "timestamp",
-                        default: "CURRENT_TIMESTAMP",
+                        default: "CURRENT_TIMESTAMP"
                     },
                     {
                         name: "updated_at",
                         type: "timestamp",
                         default: "CURRENT_TIMESTAMP",
-                        onUpdate: "CURRENT_TIMESTAMP",
+                        onUpdate: "CURRENT_TIMESTAMP"
                     },
                 ],
             }),

@@ -3,10 +3,10 @@ import { User } from '../models/User'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import {
-    spanishPhoneRegex,
-    emailRegex,
-    passwordRegex,
-    dniRegex
+    validateEmail,
+    validatePassword,
+    validateDni,
+    validatePhone
 } from '../validations/validations'
 
 const register = async (req: Request, res: Response) => {
@@ -23,19 +23,19 @@ const register = async (req: Request, res: Response) => {
             country,
             email } = req.body
 
-        if (!spanishPhoneRegex.test(phone)) {
+        if (validatePhone(phone)) {
             return res.status(400).json
                 ({
                     success: false,
-                    message: 'Phone is not valid'
+                    message: validatePhone(phone)
                 })
         }
 
-        if (!emailRegex.test(email)) {
+        if (validateEmail(email)) {
             return res.status(400).json
                 ({
                     success: false,
-                    message: 'Email format is not valid'
+                    message: validateEmail(email)
                 })
         }
 
@@ -47,19 +47,27 @@ const register = async (req: Request, res: Response) => {
                 })
         }
 
-        if (!passwordRegex.test(password)) {
+        if (await User.findOneBy({ documentId })) {
             return res.status(400).json
                 ({
                     success: false,
-                    message: 'Password must be between 6 and 12 characters and contain at least one lowercase letter, one uppercase letter, one number, and one special character'
+                    message: 'Document is already registered'
                 })
         }
 
-        if (!dniRegex.test(documentId)) {
+        if (validatePassword(password)) {
             return res.status(400).json
                 ({
                     success: false,
-                    message: 'Document ID is not valid'
+                    message: validatePassword(password)
+                })
+        }
+
+        if (validateDni(documentId)) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: validateDni(documentId)
                 })
         }
 
@@ -99,11 +107,11 @@ const login = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body
 
-        if (!emailRegex.test(email)) {
+        if (validateEmail(email)) {
             return res.status(400).json
                 ({
                     success: false,
-                    message: 'Email format is not valid'
+                    message: validateEmail(email)
                 })
         }
 

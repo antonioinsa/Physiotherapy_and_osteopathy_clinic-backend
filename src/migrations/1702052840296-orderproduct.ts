@@ -12,36 +12,36 @@ export class Orderproduct1702052840296 implements MigrationInterface {
                         type: "int",
                         isPrimary: true,
                         isGenerated: true,
-                        generationStrategy: "increment",
+                        generationStrategy: "increment"
                     },
                     {
                         name: "order_id",
-                        type: "int",
+                        type: "int"
                     },
                     {
                         name: "product_id",
-                        type: "int",
+                        type: "int"
                     },
                     {
                         name: "quantity",
-                        type: "int",
+                        type: "int"
                     },
                     {
                         name: "price",
                         type: "decimal",
                         precision: 4,
-                        scale: 2,
+                        scale: 2
                     },
                     {
                         name: "created_at",
                         type: "timestamp",
-                        default: "CURRENT_TIMESTAMP",
+                        default: "CURRENT_TIMESTAMP"
                     },
                     {
                         name: "updated_at",
                         type: "timestamp",
                         default: "CURRENT_TIMESTAMP",
-                        onUpdate: "CURRENT_TIMESTAMP",
+                        onUpdate: "CURRENT_TIMESTAMP"
                     },
                 ],
                 foreignKeys: [
@@ -49,13 +49,13 @@ export class Orderproduct1702052840296 implements MigrationInterface {
                         columnNames: ["order_id"],
                         referencedTableName: "orders",
                         referencedColumnNames: ["id"],
-                        onDelete: "CASCADE",
+                        onDelete: "CASCADE"
                     },
                     {
                         columnNames: ["product_id"],
                         referencedTableName: "products",
                         referencedColumnNames: ["id"],
-                        onDelete: "CASCADE",
+                        onDelete: "CASCADE"
                     },
                 ],
             }),

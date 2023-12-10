@@ -12,68 +12,69 @@ export class Users1702052633207 implements MigrationInterface {
                         type: "int",
                         isPrimary: true,
                         isGenerated: true,
-                        generationStrategy: "increment",
+                        generationStrategy: "increment"
                     },
                     {
                         name: "name",
                         type: "varchar",
-                        length: "50",
+                        length: "50"
                     },
                     {
                         name: "lastName",
                         type: "varchar",
-                        length: "50",
+                        length: "50"
                     },
                     {
                         name: "phone",
                         type: "varchar",
-                        length: "13",
+                        length: "13"
                     },
                     {
                         name: "email",
                         type: "varchar",
                         length: "100",
-                        isUnique: true,
+                        isUnique: true
                     },
                     {
                         name: "password",
                         type: "varchar",
-                        length: "255",
+                        length: "255"
                     },
                     {
                         name: "documentId",
                         type: "varchar",
                         length: "20",
+                        isUnique: true
                     },
                     {
                         name: "street",
                         type: "varchar",
-                        length: "100",
+                        length: "100"
                     },
                     {
                         name: "door",
                         type: "varchar",
-                        length: "5",
+                        length: "5"
                     },
                     {
                         name: "zipCode",
                         type: "varchar",
-                        length: "50",
+                        length: "50"
                     },
                     {
                         name: "town",
                         type: "varchar",
-                        length: "30",
+                        length: "30"
                     },
                     {
                         name: "country",
                         type: "varchar",
-                        length: "30",
+                        length: "30"
                     },
                     {
                         name: "is_active",
                         type: "boolean",
-                        default: true,
+                        default: true
                     },
                     {
                         name: "role",
@@ -84,12 +85,12 @@ export class Users1702052633207 implements MigrationInterface {
                     {
                         name: "created_at",
                         type: "timestamp",
-                        default: "CURRENT_TIMESTAMP",
+                        default: "CURRENT_TIMESTAMP"
                     },
                     {
                         name: "updated_at",
                         type: "timestamp",
-                        default: "CURRENT_TIMESTAMP",
+                        default: "CURRENT_TIMESTAMP"
                     },
                 ],
             }),
