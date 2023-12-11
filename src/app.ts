@@ -10,9 +10,9 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-app.use('/', routerUsers)
+app.use('/', routerUsers, routerSuperAdmin)
 //app.use('/worker', routerAdmin)
-app.use('/sa', routerSuperAdmin)
+
 
 
 export default app

@@ -1,14 +1,18 @@
 import { Router } from "express";
-import { authAdmin } from "../middlewares/authAdmin";
-import { authSuperAdmin } from "../middlewares/authSuperAdmin";
 import { authUser } from "../middlewares/authUser";
-import { deleteUserBySuperAdmin } from "../controllers/superAdminController";
+import { authSuperAdmin } from "../middlewares/authSuperAdmin";
+import {
+    changeRoleBySuperAdmin,
+    deleteUserBySuperAdmin,
+    updateWorkerBySuperAdmin
+} from "../controllers/superAdminController";
 
 const routerSuperAdmin = Router()
 
 
-//routerSuperAdmin.delete('/delete/:id', authUser,authAdmin, authSuperAdmin, deleteUserBySuperAdmin)
-
+routerSuperAdmin.delete('/delete/:id', authUser, authSuperAdmin, deleteUserBySuperAdmin)
+routerSuperAdmin.put('/updateWorker', authUser, authSuperAdmin, updateWorkerBySuperAdmin)
+routerSuperAdmin.put('/changeRole', authUser, authSuperAdmin, changeRoleBySuperAdmin)
 
 
 

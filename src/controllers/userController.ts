@@ -304,7 +304,7 @@ const updateUserById = async (req: Request, res: Response) => {
                         country
                     }
                 )
-            const updateClient = await User.findOneBy
+            const updateUser = await User.findOneBy
                 ({
                     id: req.token.id
                 })
@@ -312,7 +312,7 @@ const updateUserById = async (req: Request, res: Response) => {
             return res.status(200).json({
                 success: true,
                 message: 'Updated user',
-                data: updateClient
+                data: updateUser
             })
         }
         return res.status(401).json
@@ -361,39 +361,4 @@ const deleteUserById = async (req: Request, res: Response) => {
     }
 }
 
-const deleteUserBySuperAdmin = async (req: Request, res: Response) => {
-    try {
-        if (req.token.role !== 'superAdmin') {
-
-            return res.status(401).json
-                ({
-                    success: false,
-                    message: 'You cannot delete an user'
-                })
-
-        }
-            const { id } = req.params
-
-            await User.delete
-                (
-                    id
-                )
-
-            return res.status(200).json
-                ({
-                    success: true,
-                    message: 'User deleted'
-                })
-        
-        
-    } catch (error) {
-        return res.status(500).json
-            ({
-                success: false,
-                message: 'User cannot be deleted',
-                error: error
-            })
-    }
-}
-
-export { register, login, account, updateUserById, deleteUserById, deleteUserBySuperAdmin }
+export { register, login, account, updateUserById, deleteUserById }

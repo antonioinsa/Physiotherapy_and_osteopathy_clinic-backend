@@ -4,12 +4,9 @@ import {
     login,
     account,
     updateUserById,
-    deleteUserById,
-    deleteUserBySuperAdmin
+    deleteUserById
 } from "../controllers/userController";
 import { authUser } from "../middlewares/authUser";
-import { authSuperAdmin } from "../middlewares/authSuperAdmin";
-
 
 const routerUsers = Router()
 
@@ -18,6 +15,6 @@ routerUsers.post('/login', login)
 routerUsers.get('/account', authUser, account)
 routerUsers.put('/update', authUser, updateUserById)
 routerUsers.delete('/delete', authUser, deleteUserById)
-routerUsers.delete('/delete/:id', authUser, authSuperAdmin, deleteUserBySuperAdmin)
+
 
 export { routerUsers }
