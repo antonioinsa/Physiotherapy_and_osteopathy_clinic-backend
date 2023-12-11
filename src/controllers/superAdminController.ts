@@ -45,8 +45,6 @@ const deleteUserBySuperAdmin = async (req: Request, res: Response) => {
 const updateWorkerBySuperAdmin = async (req: Request, res: Response) => {
     try {
         const {
-            name,
-            lastName,
             phone,
             email,
             street,
@@ -56,85 +54,76 @@ const updateWorkerBySuperAdmin = async (req: Request, res: Response) => {
             country
         } = req.body
 
-        // if (validateName(name)) {
-        //     return res.status(400).json
-        //         ({
-        //             success: false,
-        //             message: validateName(name)
-        //         })
-        // }
-
-        // if (validateLastName(lastName)) {
-        //     return res.status(400).json
-        //         ({
-        //             success: false,
-        //             message: validateLastName(lastName)
-        //         })
-        // }
-
-        // if (validatePhone(phone)) {
-        //     return res.status(400).json
-        //         ({
-        //             success: false,
-        //             message: validatePhone(phone)
-        //         })
-        // }
-
-        // if (validateEmail(email)) {
-        //     return res.status(400).json
-        //         ({
-        //             success: false,
-        //             message: validateEmail(email)
-        //         })
-        // }
-
-        const { id } = req.body
-
-        // if (req.token.role !== 'superAdmin') {
-
-            const adminUser = await User.findOne
+        if (validatePhone(phone)) {
+            return res.status(400).json
                 ({
-                    where: { id, role: 'admin' }
+                    success: false,
+                    message: validatePhone(phone)
                 })
-console.log(adminUser);
+        }
 
-            // if (!adminUser) {
-            //     return res.status(400).json
-            //         ({
-            //             success: false,
-            //             message: 'Worker not found'
-            //         })
-            // }
+        if (validateEmail(email)) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: validateEmail(email)
+                })
+        }
 
-            await User.update
-                (
-                    {
-                        id
-                    },
-                    {
-                        name,
-                        lastName,
-                        phone,
-                        email,
-                        street,
-                        door,
-                        zipCode,
-                        town,
-                        country
-                    }
-                )
-            const updateWorker = await User.findOne
-                (
-                    id
-                )
+        const id = req.body.id
 
-            return res.status(200).json({
-                success: true,
-                message: 'Worker updated',
-                data: updateWorker
+        if (req.token.role !== 'superAdmin') {
+            return res.status(401).json
+                ({
+                    success: false,
+                    message: 'You cannot update a worker'
+                })
+        }
+
+        const adminUser = await User.findOne
+            ({
+                where: { id, role: 'admin' }
             })
 
-        // }
+
+        if (!adminUser) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: 'Worker not found'
+                })
+        }
+
+        await User.update
+            (
+                {
+                    id
+                },
+                {
+                    phone,
+                    email,
+                    street,
+                    door,
+                    zipCode,
+                    town,
+                    country
+                }
+            )
+        const updateWorker = await User.findOne
+            ({
+                select: ['name', 'lastName', 'phone', 'email', 'street', 'door', 'zipCode', 'town', 'country'],
+
+                where: { id, role: 'admin' }
+            })
+        console.log(updateWorker);
+
+        return res.status(200).json({
+            success: true,
+            message: 'Worker updated',
+            data: updateWorker
+        })
+
+
         // return res.status(401).json
         //     ({
         //         success: false,
