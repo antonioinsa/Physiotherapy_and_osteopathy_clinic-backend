@@ -17,6 +17,6 @@ routerUsers.post('/login', login)
 routerUsers.get('/account', authUser, account)
 routerUsers.put('/update', authUser, updateUserById)
 routerUsers.delete('/delete', authUser, deleteUserById)
-routerUsers.delete('/delete/:id', authUser,authSuperAdmin, deleteUserBySuperAdmin)
+routerUsers.delete('/delete/:id', authUser,authAdmin, authSuperAdmin, deleteUserBySuperAdmin)
 
 export { routerUsers }
