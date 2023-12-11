@@ -1,5 +1,12 @@
 import { Router } from "express";
-import { register, login, account, updateUserById, deleteUserById } from "../controllers/userController";
+import {
+    register,
+    login,
+    account,
+    updateUserById,
+    deleteUserById,
+    deleteUserBySuperAdmin
+} from "../controllers/userController";
 import { authUser } from "../middlewares/authUser";
 
 
@@ -10,5 +17,6 @@ routerUsers.post('/login', login)
 routerUsers.get('/account', authUser, account)
 routerUsers.put('/update', authUser, updateUserById)
 routerUsers.delete('/delete', authUser, deleteUserById)
+routerUsers.delete('/delete/:id', authUser,authSuperAdmin, deleteUserBySuperAdmin)
 
 export { routerUsers }

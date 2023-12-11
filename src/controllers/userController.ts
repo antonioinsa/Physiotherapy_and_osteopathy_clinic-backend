@@ -241,12 +241,6 @@ const updateUserById = async (req: Request, res: Response) => {
             country
         } = req.body
 
-        await User.findOneBy
-            (
-                { id: req.token.id }
-
-            )
-
         if (validateName(name)) {
             return res.status(400).json
                 ({
@@ -320,6 +314,11 @@ const updateUserById = async (req: Request, res: Response) => {
                 data: updateClient
             })
         }
+        return res.status(401).json
+            ({
+                success: false,
+                message: 'You cannot update an user'
+            })
 
     } catch (error) {
         return res.status(500).json
@@ -333,11 +332,8 @@ const updateUserById = async (req: Request, res: Response) => {
 
 const deleteUserById = async (req: Request, res: Response) => {
     try {
-        await User.findOneBy
-            (
-                { id: req.token.id }
-            )
-        if (req.token.role !== 'admin') {
+        if (req.token.role === 'user') {
+            
             await User.delete
                 (
                     { id: req.token.id }
@@ -349,6 +345,11 @@ const deleteUserById = async (req: Request, res: Response) => {
                     message: 'User deleted'
                 })
         }
+        return res.status(401).json
+            ({
+                success: false,
+                message: 'You cannot delete an user'
+            })
     } catch (error) {
         return res.status(500).json
             ({
@@ -359,5 +360,32 @@ const deleteUserById = async (req: Request, res: Response) => {
     }
 }
 
+const deleteUserBySuperAdmin = async (req: Request, res: Response) => {
+    try {
+        if (req.token.role === 'superAdmin') {
 
-export { register, login, account, updateUserById, deleteUserById }
+            const { id } = req.params
+
+            await User.delete
+                (
+                    id
+                )
+
+            return res.status(200).json
+                ({
+                    success: true,
+                    message: 'User deleted'
+                })
+        }
+        
+    } catch (error) {
+        return res.status(500).json
+            ({
+                success: false,
+                message: 'User cannot be deleted',
+                error: error
+            })
+    }
+}
+
+export { register, login, account, updateUserById, deleteUserById, deleteUserBySuperAdmin }
