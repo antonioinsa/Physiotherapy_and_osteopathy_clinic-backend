@@ -10,6 +10,7 @@ import {
     validateName,
     validateLastName
 } from '../validations/validations'
+import { log } from 'console'
 
 const register = async (req: Request, res: Response) => {
     try {
@@ -362,8 +363,15 @@ const deleteUserById = async (req: Request, res: Response) => {
 
 const deleteUserBySuperAdmin = async (req: Request, res: Response) => {
     try {
-        if (req.token.role === 'superAdmin') {
+        if (req.token.role !== 'superAdmin') {
 
+            return res.status(401).json
+                ({
+                    success: false,
+                    message: 'You cannot delete an user'
+                })
+
+        }
             const { id } = req.params
 
             await User.delete
@@ -376,7 +384,7 @@ const deleteUserBySuperAdmin = async (req: Request, res: Response) => {
                     success: true,
                     message: 'User deleted'
                 })
-        }
+        
         
     } catch (error) {
         return res.status(500).json
