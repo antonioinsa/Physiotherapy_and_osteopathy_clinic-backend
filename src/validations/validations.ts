@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import isLeapYear from 'dayjs/plugin/isLeapYear'
+import 'dayjs/locale/es';
 
 const validateEmail = (email: string) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,20}$/
@@ -82,52 +84,62 @@ const validatePhone = (phone: string) => {
 }
 
 const validateName = (name: string) => {
+    if (!name) {
+        return 'Must provide a name'
+    }
+
     if (name !== undefined && name.trim() !== '' && name.length >= 50) {
         return 'Maximum 50 characters'
     }
 
-    if (!name) {
-        return 'Must provide a name'
-    }
 }
 
 const validateLastName = (lastName: string) => {
+    if (!lastName) {
+        return 'Must provide a last name'
+    }
+
     if (lastName !== undefined && lastName.trim() !== '' && lastName.length >= 50) {
         return 'Maximum 50 characters'
     }
 
-    if (!lastName) {
-        return 'Must provide a last name'
-    }
 }
 
 const validateService = (service: string) => {
-    const validService = ['physiotherapy', 'osteopathy']
-
-    if (!validService.includes(service)) {
-        return 'Incorrect service, please choose a valid service (physiotherapy, osteopathy)'
-    }
-
     if (!service) {
         return 'Must provide a service'
     }
+    const validService = ['physiotherapy', 'osteopathy']
+    const serviceTrue = service.toLowerCase()
+
+    if (!validService.includes(serviceTrue)) {
+        return 'Incorrect service, please choose a valid service (physiotherapy, osteopathy)'
+    }
+
 }
 
+dayjs.extend(isLeapYear)
+
 const validateDate = (date: string) => {
-    const currentDate = dayjs()
-    const selectDate = dayjs(date)
-
-    if (selectDate.isBefore(currentDate, 'day')) {
-        return 'Current date is before selected date. Please, choose a valid date.'
-    }
-
-    if (!selectDate.isValid() || selectDate < currentDate) {
-        return 'Invalid date, before the appointment creation'
-    }
-
-    if (!selectDate) {
+    dayjs.locale('es')
+    
+    if (!date) {
         return 'Must provide a date'
     }
+    
+    const formattedDate = dayjs(date, "DD-MM-YYYY")
+    
+
+    if (!formattedDate.isValid()) {
+        return 'Incorrect date, please choose a valid date DD-MM-YYYY'
+    }
+
+    const currentDate = dayjs()
+
+    if (formattedDate.isBefore(currentDate, 'day')) {
+        return 'Current date is before selected date. Please, choose a valid date.'
+    }
+    
 
 }
 

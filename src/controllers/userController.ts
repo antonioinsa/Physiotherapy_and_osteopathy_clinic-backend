@@ -281,8 +281,20 @@ const updateUserById = async (req: Request, res: Response) => {
                 })
         }
 
-        if (req.token.role !== 'admin') {
+        const userExist = await User.findOne
+            ({
+                where: { id: req.token.id }
+            })
 
+        if (!userExist) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: 'User not found'
+                })
+        }
+        
+        if (req.token.role !== 'admin') {
             const encrytedPassword = await bcrypt.hash(password, 5)
 
             await User.update
@@ -314,7 +326,7 @@ const updateUserById = async (req: Request, res: Response) => {
                 data: updateUser
             })
         }
-        return res.status(401).json
+        return res.status(400).json
             ({
                 success: false,
                 message: 'You cannot update an user'

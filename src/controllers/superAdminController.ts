@@ -28,8 +28,7 @@ const deleteUserBySuperAdmin = async (req: Request, res: Response) => {
                 success: true,
                 message: 'User deleted'
             })
-
-
+            
     } catch (error) {
         return res.status(500).json
             ({

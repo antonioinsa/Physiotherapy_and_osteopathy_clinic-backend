@@ -23,6 +23,11 @@ export class Appointmentsexercises1702052736388 implements MigrationInterface {
                         type: "int"
                     },
                     {
+                        name: "is_active",
+                        type: "boolean",
+                        default: false
+                    },
+                    {
                         name: "created_at",
                         type: "timestamp",
                         default: "CURRENT_TIMESTAMP"

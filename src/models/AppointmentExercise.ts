@@ -16,6 +16,9 @@ export class AppointmentExercise extends BaseEntity {
     @Column()
     exercise_id!: number
 
+    @Column()
+    is_active!: boolean
+
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     created_at!: Date
 
