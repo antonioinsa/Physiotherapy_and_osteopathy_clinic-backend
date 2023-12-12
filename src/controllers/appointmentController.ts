@@ -161,6 +161,50 @@ const updateAppointment = async (req: Request, res: Response) => {
 
 }
 
+const deleteAppointment = async (req: Request, res: Response) => {
+    try {   
+        if (req.token.role !== 'user') {
+            return res.status(401).json
+                ({
+                    success: false,
+                    message: 'You cannot delete an appointment'
+                })
+        }
 
+        const appointmentId = req.params.id
+        const appointment = await Appointment.findOneBy
+        ({
+            id: parseInt(appointmentId),
+            user_id: req.token.id
+        })
 
-export { newAppointment, updateAppointment }
+        if(!appointment){
+            return res.status(400).json
+            ({
+                success: false,
+                message: 'Appointment not found'
+            })
+        }
+
+        await Appointment.delete
+            (
+                {id: parseInt(appointmentId)}
+            )
+
+        return res.status(200).json
+            ({
+                success: true,
+                message: 'Appointmnet deleted'
+            })
+
+    } catch (error) {
+        return res.status(500).json
+            ({
+                success: false,
+                message: 'Appointment cannot be deleted',
+                error: error
+            })
+    }
+}
+
+export { newAppointment, updateAppointment, deleteAppointment }
