@@ -10,7 +10,6 @@ import {
     validateName,
     validateLastName
 } from '../validations/validations'
-import { log } from 'console'
 
 const register = async (req: Request, res: Response) => {
     try {
@@ -334,7 +333,7 @@ const updateUserById = async (req: Request, res: Response) => {
 const deleteUserById = async (req: Request, res: Response) => {
     try {
         if (req.token.role === 'user') {
-            
+
             await User.delete
                 (
                     { id: req.token.id }

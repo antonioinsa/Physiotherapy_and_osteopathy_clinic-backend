@@ -27,7 +27,6 @@ export class Appointments1702052671982 implements MigrationInterface {
                             "10:15",
                             "11:30",
                             "12:45",
-                            "14:00",
                             "16:00",
                             "17:15",
                             "18:30"
@@ -44,8 +43,8 @@ export class Appointments1702052671982 implements MigrationInterface {
                         name: "service",
                         type: "enum",
                         enum: [
-                            "Physiotherapy",
-                            "Osteopathy"
+                            "physiotherapy",
+                            "osteopathy"
                         ],
                     },
                     {

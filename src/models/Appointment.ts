@@ -8,15 +8,14 @@ enum hours {
     H10_15 = "10:15",
     H11_30 = "11:30",
     H12_45 = "12:45",
-    H14_00 = "14:00",
     H16_00 = "16:00",
     H17_15 = "17:15",
     H18_30 = "18:30"
 }
 
 enum services {
-    physiotherapy = "Physiotherapy",
-    osteopathy = "Osteopathy"
+    physiotherapy = "physiotherapy",
+    osteopathy = "osteopathy"
 }
 
 @Entity("appointments")

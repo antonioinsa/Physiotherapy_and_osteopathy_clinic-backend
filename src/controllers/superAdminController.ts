@@ -2,8 +2,6 @@ import { Request, Response } from 'express';
 import { User } from '../models/User';
 import {
     validateEmail,
-    validateLastName,
-    validateName,
     validatePhone
 } from '../validations/validations';
 
@@ -111,24 +109,26 @@ const updateWorkerBySuperAdmin = async (req: Request, res: Response) => {
             )
         const updateWorker = await User.findOne
             ({
-                select: ['name', 'lastName', 'phone', 'email', 'street', 'door', 'zipCode', 'town', 'country'],
+                select: [
+                    'name',
+                    'lastName',
+                    'phone',
+                    'email',
+                    'street',
+                    'door',
+                    'zipCode',
+                    'town',
+                    'country'
+                ],
 
                 where: { id, role: 'admin' }
             })
-        console.log(updateWorker);
 
         return res.status(200).json({
             success: true,
             message: 'Worker updated',
             data: updateWorker
         })
-
-
-        // return res.status(401).json
-        //     ({
-        //         success: false,
-        //         message: 'You cannot update a worker'
-        //     })
 
     } catch (error) {
         return res.status(500).json
@@ -155,9 +155,16 @@ const changeRoleBySuperAdmin = async (req: Request, res: Response) => {
                 }
             )
 
-        const updateToWorker = await User.findOne({
-            where: { id: id }
-        })
+        const updateToWorker = await User.findOne
+            ({
+                select: [
+                    'name',
+                    'lastName',
+                    'role'
+                ],
+
+                where: { id: id }
+            })
 
         return res.status(200).json
             (
