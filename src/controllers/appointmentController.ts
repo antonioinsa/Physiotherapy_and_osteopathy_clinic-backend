@@ -3,9 +3,6 @@ import { Appointment } from '../models/Appointment'
 import { validateAppointmentHour, validateDate, validateService } from '../validations/validations'
 import { User } from '../models/User'
 import dayjs from 'dayjs'
-import { parse } from 'path'
-
-
 
 const newAppointment = async (req: Request, res: Response) => {
     try {
@@ -55,12 +52,13 @@ const newAppointment = async (req: Request, res: Response) => {
                 })
         }
 
-        const dateBody = dayjs(date, 'DD-MM-YYYY')
-        const dbDate = dateBody.format('YYYY-MM-DD')
-
+       const originalDate = date
+       const [day, month, year] = originalDate.split('-')
+       const formattedDate = `${year}-${month}-${day}`
+       
         const newAppointment = await Appointment.create
             ({
-                date: dbDate,
+                date: formattedDate,
                 hour,
                 service,
                 user_id: req.token.id
@@ -123,8 +121,9 @@ const updateAppointment = async (req: Request, res: Response) => {
             })
         }
 
-        const dateBody = dayjs(date, 'DD-MM-YYYY')
-        const dbDate = dateBody.format('YYYY-MM-DD')
+        const originalDate = date
+       const [day, month, year] = originalDate.split('-')
+       const formattedDate = `${year}-${month}-${day}`
 
         await Appointment.update
             (
@@ -132,7 +131,7 @@ const updateAppointment = async (req: Request, res: Response) => {
                     id: id
                 },
                 {
-                    date: dbDate,
+                    date: formattedDate,
                     hour
                 }
             )
@@ -162,7 +161,7 @@ const updateAppointment = async (req: Request, res: Response) => {
 }
 
 const deleteAppointment = async (req: Request, res: Response) => {
-    try {   
+    try {
         if (req.token.role !== 'user') {
             return res.status(401).json
                 ({
@@ -173,22 +172,22 @@ const deleteAppointment = async (req: Request, res: Response) => {
 
         const appointmentId = req.params.id
         const appointment = await Appointment.findOneBy
-        ({
-            id: parseInt(appointmentId),
-            user_id: req.token.id
-        })
-
-        if(!appointment){
-            return res.status(400).json
             ({
-                success: false,
-                message: 'Appointment not found'
+                id: parseInt(appointmentId),
+                user_id: req.token.id
             })
+
+        if (!appointment) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: 'Appointment not found'
+                })
         }
 
         await Appointment.delete
             (
-                {id: parseInt(appointmentId)}
+                { id: parseInt(appointmentId) }
             )
 
         return res.status(200).json

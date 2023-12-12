@@ -1,6 +1,4 @@
 import dayjs from 'dayjs';
-import isLeapYear from 'dayjs/plugin/isLeapYear'
-import 'dayjs/locale/es';
 
 const validateEmail = (email: string) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,20}$/
@@ -118,28 +116,21 @@ const validateService = (service: string) => {
 
 }
 
-dayjs.extend(isLeapYear)
-
 const validateDate = (date: string) => {
-    dayjs.locale('es')
-    
+    let today = dayjs()
+
     if (!date) {
         return 'Must provide a date'
     }
-    
-    const formattedDate = dayjs(date, "DD-MM-YYYY")
-    
 
-    if (!formattedDate.isValid()) {
+    if (!/^\d{2}-\d{2}-\d{4}$/.test(date)) {
         return 'Incorrect date, please choose a valid date DD-MM-YYYY'
     }
 
-    const currentDate = dayjs()
-
-    if (formattedDate.isBefore(currentDate, 'day')) {
+    if (dayjs(date, "DD-MM-YYYY").isBefore(today, 'day')) {
         return 'Current date is before selected date. Please, choose a valid date.'
     }
-    
+
 
 }
 
@@ -152,77 +143,30 @@ const validateAppointmentHour = (selectedHour: string) => {
         return 'Incorrect hour'
     }
 
-    const validHours = ['09:00', '10:15', '11:30', '12:45',  '16:00', '17:15', '18:30']
+    const validHours = ['09:00', '10:15', '11:30', '12:45', '16:00', '17:15', '18:30']
 
     if (!validHours.includes(selectedHour)) {
         return 'Incorrect hour, please choose a valid hour (09:00, 10:15, 11:30, 12:45, 14:00, 16:00, 17:15, 18:30)'
     }
 }
 
-// const validateAppointment = (selectedDate: string, selectedHour: string) => {
-    
-//     const currentDate = dayjs();
-//     const selectDate = dayjs(selectedDate);
+const validateDateHour = (date: string, hour: string) => {
+    let today = dayjs()
 
-//     if (selectDate.isBefore(currentDate, 'day')) {
-//         return 'Current date is before selected date. Please, choose a valid date'
-//     }
-
-//     if (!selectDate.isValid() || selectDate < currentDate) {
-//         return 'Invalid date, before the appointment creation'
-//     }
-
-//     if (!selectedHour) {
-//         return 'Must provide an hour'
-//     }
-
-//     if (typeof selectedHour !== "string") {
-//         return 'Incorrect hour'
-//     }
-
-//     const validHours = ['09:00', '10:15', '11:30', '12:45', '16:00', '17:15', '18:30']
-
-//     if (!validHours.includes(selectedHour)) {
-//         return 'Incorrect hour, please choose a valid hour (09:00, 10:15, 11:30, 12:45, 16:00, 17:15, 18:30)'
-//     }
-
-//     // Validacion de solapamiento de citas
-//     const newAppointmentStart = dayjs(`${selectedDate} ${selectedHour}`)
-//     const newAppointmentEnd = newAppointmentStart.add(1, 'hour')
-
-//     // Almacenamos las citas existentes
-//     const existingAppointments = [
-//         { date: '2023-01-15', startTime: '10:00', endTime: '11:00' },
-//         { date: '2023-01-16', startTime: '14:00', endTime: '15:30' },
-//     ]
-
-//     // Check for overlap with existing appointments
-//     for (const appointment of existingAppointments) {
-//         const existingAppointmentStart = dayjs(`${appointment.date} ${appointment.startTime}`);
-//         const existingAppointmentEnd = dayjs(`${appointment.date} ${appointment.endTime}`);
-
-//         if (
-//             (newAppointmentStart.isAfter(existingAppointmentStart) && newAppointmentStart.isBefore(existingAppointmentEnd)) ||
-//             (newAppointmentEnd.isAfter(existingAppointmentStart) && newAppointmentEnd.isBefore(existingAppointmentEnd)) ||
-//             (newAppointmentStart.isSameOrBefore(existingAppointmentStart) && newAppointmentEnd.isSameOrAfter(existingAppointmentEnd))
-//         ) {
-//             return 'The new appointment overlaps with an existing appointment. Please choose another date or time.';
-//         }
-//     }
-
-//     // If it passes all validations, the appointment is valid
-//     return 'The new appointment is valid.';
-// }
-
-
-    export {
-        validateEmail,
-        validatePassword,
-        validateDni,
-        validatePhone,
-        validateName,
-        validateLastName,
-        validateService,
-        validateDate,
-        validateAppointmentHour
+    if (dayjs(date, "DD-MM-YYYY").isBefore(today, 'day')) {
+        return 'Current date is before selected date. Please, choose a valid date.'
     }
+
+}
+
+export {
+    validateEmail,
+    validatePassword,
+    validateDni,
+    validatePhone,
+    validateName,
+    validateLastName,
+    validateService,
+    validateDate,
+    validateAppointmentHour
+}
