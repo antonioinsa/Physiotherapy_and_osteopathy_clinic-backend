@@ -1,8 +1,13 @@
 import { Request, Response } from 'express'
 import { Appointment } from '../models/Appointment'
-import { validateAppointmentHour, validateDate, validateService } from '../validations/validations'
 import { User } from '../models/User'
-import dayjs from 'dayjs'
+import {
+    validateHour,
+    validateDate,
+    validateService,
+    validateAppointment
+} from '../validations/validations'
+
 
 const newAppointment = async (req: Request, res: Response) => {
     try {
@@ -28,11 +33,11 @@ const newAppointment = async (req: Request, res: Response) => {
             })
         }
 
-        if (validateAppointmentHour(hour)) {
+        if (validateHour(hour)) {
             return res.status(400).json
                 ({
                     success: false,
-                    message: validateAppointmentHour(hour)
+                    message: validateHour(hour)
                 })
         }
 
@@ -52,10 +57,18 @@ const newAppointment = async (req: Request, res: Response) => {
                 })
         }
 
-       const originalDate = date
-       const [day, month, year] = originalDate.split('-')
-       const formattedDate = `${year}-${month}-${day}`
-       
+        if (validateAppointment(date, hour)) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: validateAppointment(date, hour)
+                })
+        }
+
+        const originalDate = date
+        const [day, month, year] = originalDate.split('-')
+        const formattedDate = `${year}-${month}-${day}`
+
         const newAppointment = await Appointment.create
             ({
                 date: formattedDate,
@@ -85,11 +98,11 @@ const updateAppointment = async (req: Request, res: Response) => {
     try {
         const { id, date, hour } = req.body
 
-        if (validateAppointmentHour(hour)) {
+        if (validateHour(hour)) {
             return res.status(400).json
                 ({
                     success: false,
-                    message: validateAppointmentHour(hour)
+                    message: validateHour(hour)
                 })
         }
 
@@ -98,6 +111,14 @@ const updateAppointment = async (req: Request, res: Response) => {
                 ({
                     success: false,
                     message: validateDate(date)
+                })
+        }
+
+        if (validateAppointment(date, hour)) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: validateAppointment(date, hour)
                 })
         }
 
@@ -122,8 +143,8 @@ const updateAppointment = async (req: Request, res: Response) => {
         }
 
         const originalDate = date
-       const [day, month, year] = originalDate.split('-')
-       const formattedDate = `${year}-${month}-${day}`
+        const [day, month, year] = originalDate.split('-')
+        const formattedDate = `${year}-${month}-${day}`
 
         await Appointment.update
             (

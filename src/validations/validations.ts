@@ -128,35 +128,53 @@ const validateDate = (date: string) => {
     }
 
     if (dayjs(date, "DD-MM-YYYY").isBefore(today, 'day')) {
-        return 'Current date is before selected date. Please, choose a valid date.'
+        return 'Current date is before selected date. Please, choose a valid date'
     }
 
 
 }
 
-const validateAppointmentHour = (selectedHour: string) => {
-    if (!selectedHour) {
+const validateHour = (hour: string) => {
+    let today = dayjs()
+
+    if (!hour) {
         return 'Must provide a hour'
     }
 
-    if (typeof (selectedHour) !== "string") {
+    if (typeof (hour) !== "string") {
         return 'Incorrect hour'
     }
 
     const validHours = ['09:00', '10:15', '11:30', '12:45', '16:00', '17:15', '18:30']
 
-    if (!validHours.includes(selectedHour)) {
+    if (!validHours.includes(hour)) {
         return 'Incorrect hour, please choose a valid hour (09:00, 10:15, 11:30, 12:45, 14:00, 16:00, 17:15, 18:30)'
+    }
+
+    if (dayjs(hour, "HH:mm").isBefore(today, 'minute')) {
+        return 'Please choose an other available hour'
     }
 }
 
-const validateDateHour = (date: string, hour: string) => {
+const validateAppointment = (date: string, hour: string) => {
     let today = dayjs()
+    const validHours = ['09:00', '10:15', '11:30', '12:45', '16:00', '17:15', '18:30']
 
-    if (dayjs(date, "DD-MM-YYYY").isBefore(today, 'day')) {
-        return 'Current date is before selected date. Please, choose a valid date.'
+    if (dayjs(date, "DD-MM-YYYY").isSame(today, 'day') && dayjs(hour, "HH:mm").isBefore(today, 'minute')) {
+        return 'Current hour is before selected hour. Please choose a valid hour'
     }
 
+    if (dayjs(date, "DD-MM-YYYY").isSame(today, 'day') && validHours.includes(hour)) {
+        return 'Please choose another available hour or another day'
+    }
+
+    if (dayjs(date, "DD-MM-YYYY").isBefore(today, 'day')) {
+        return 'Current date is before selected date. Please choose a valid date'
+    }
+
+    if (!validHours.includes(hour)) {
+        return 'Please choose a valid hour (09:00, 10:15, 11:30, 12:45, 16:00, 17:15, 18:30)'
+    }
 }
 
 export {
@@ -168,5 +186,6 @@ export {
     validateLastName,
     validateService,
     validateDate,
-    validateAppointmentHour
+    validateHour,
+    validateAppointment
 }
