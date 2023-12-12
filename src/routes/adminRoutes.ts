@@ -1,12 +1,14 @@
-// import { Router } from "express";
-// import {  } from "../controllers/adminController";
-// import { authAdmin } from "../middlewares/authUser";
+import { Router } from "express";
+import {  } from "../controllers/adminController";
+import { authUser } from "../middlewares/authUser";
+import { authAdmin } from "../middlewares/authAdmin";
+import { updateWorkerById } from "../controllers/adminController";
 
 
-// const routerAdmin = Router()
+const routerAdmin = Router()
 
-// routerAdmin.get('/profile', authUser, authAdmin, account)
-// routerAdmin.get('/view-appointment', authUser, authAdmin, allTheirAppointments)
-// routerAdmin.put('/add-exercises', addExercicesToAppointment)
+routerAdmin.put('/profile', authUser, authAdmin, updateWorkerById)
+//routerAdmin.get('/view-appointment', authUser, authAdmin, allTheirAppointments)
+//routerAdmin.put('/add-exercises', addExercicesToAppointment)
 
-// export { routerAdmin }
+export { routerAdmin }

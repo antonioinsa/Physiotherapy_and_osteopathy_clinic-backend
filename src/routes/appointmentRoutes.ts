@@ -4,8 +4,8 @@ import {
     newAppointment,
     updateAppointment,
     deleteAppointment, 
-    getAppointmentByUser,
-    getAppointmentByAdmin
+    getAppointmentByUser
+
 } from "../controllers/appointmentController";
 import { authAdmin } from "../middlewares/authAdmin";
 
@@ -15,7 +15,7 @@ routerAppointment.post('/newAppointment', authUser, newAppointment)
 routerAppointment.put('/updateAppointment', authUser, updateAppointment)
 routerAppointment.delete('/deleteAppointment/:id', authUser, deleteAppointment)
 routerAppointment.get('/getAppointments', authUser, getAppointmentByUser)
-routerAppointment.get('/myAppointments', authUser, authAdmin, getAppointmentByAdmin)
+routerAppointment.get('/myAppointments', authUser, authAdmin)
 
 
 export { routerAppointment }
