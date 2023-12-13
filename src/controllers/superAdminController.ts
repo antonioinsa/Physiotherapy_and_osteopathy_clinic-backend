@@ -4,6 +4,8 @@ import {
     validateEmail,
     validatePhone
 } from '../validations/validations';
+import { Appointment } from '../models/Appointment';
+import { create } from 'domain';
 
 const deleteUserBySuperAdmin = async (req: Request, res: Response) => {
     try {
@@ -28,7 +30,7 @@ const deleteUserBySuperAdmin = async (req: Request, res: Response) => {
                 success: true,
                 message: 'User deleted'
             })
-            
+
     } catch (error) {
         return res.status(500).json
             ({
@@ -186,7 +188,110 @@ const changeRoleBySuperAdmin = async (req: Request, res: Response) => {
     }
 }
 
+const getAllAppointments = async (req: Request, res: Response) => {
+    try {
 
-export { deleteUserBySuperAdmin, updateWorkerBySuperAdmin, changeRoleBySuperAdmin };
+        const allAppointment = await Appointment.find
+            ({
+                select:
+                    [
+                        'id',
+                        'date',
+                        'hour',
+                        'service',
+                        'price',
+                        'user_id',
+                        'is_active',
+                        'created_at',
+                        'updated_at'
+                    ],
+                relations: ['userAppointment']
+            })
+
+        const CustomView = allAppointment.map((appointment) => ({
+
+            apointment_number: appointment.id,
+            name: appointment.userAppointment.name,
+            last_name: appointment.userAppointment.lastName,
+            date: appointment.date,
+            hour: appointment.hour,
+            service: appointment.service,
+            price: appointment.price,
+
+        }))
+
+        return res.status(200).json
+            ({
+                success: true,
+                message: 'All appointments',
+                data: CustomView
+            })
+
+    } catch (error) {
+        return res.status(500).json
+            ({
+                success: false,
+                message: 'Cannot retrieve appointments',
+                error: error
+            })
+    }
+}
+
+const getAllInvoices = async (req: Request, res: Response) => {
+    try {
+
+        const allAppointment = await Appointment.find
+            ({
+                where: { is_active: false },
+                select:
+                    [
+                        'date',
+                        'service',
+                        'price',
+                        'user_id',
+                    ],
+                relations: ['userAppointment']
+            })
+
+        const CustomView = allAppointment.map((appointment) => ({
+
+            date: appointment.date,
+            service: appointment.service,
+            price: appointment.price,
+            name: appointment.userAppointment.name,
+            last_name: appointment.userAppointment.lastName,
+            email: appointment.userAppointment.email,
+            phone: appointment.userAppointment.phone,
+            street: appointment.userAppointment.street,
+            door: appointment.userAppointment.door,
+            zipCode: appointment.userAppointment.zipCode,
+            town: appointment.userAppointment.town,
+            country: appointment.userAppointment.country
+        }))
+
+        return res.status(200).json
+            ({
+                success: true,
+                message: 'All invoices',
+                data: CustomView
+            })
+
+    } catch (error) {
+        return res.status(500).json
+            ({
+                success: false,
+                message: 'Cannot retrieve appointments',
+                error: error
+            })
+    }
+}
+
+export {
+    deleteUserBySuperAdmin,
+    updateWorkerBySuperAdmin,
+    changeRoleBySuperAdmin,
+    getAllAppointments,
+    getAllInvoices
+}
 
 

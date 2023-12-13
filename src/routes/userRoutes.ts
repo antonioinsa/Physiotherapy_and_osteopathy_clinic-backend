@@ -4,7 +4,8 @@ import {
     login,
     account,
     updateUserById,
-    deleteUserById
+    deleteUserById,
+    getAppointmentByUser
 } from "../controllers/userController";
 import { authUser } from "../middlewares/authUser";
 
@@ -15,6 +16,7 @@ routerUsers.post('/login', login)
 routerUsers.get('/account', authUser, account)
 routerUsers.put('/update', authUser, updateUserById)
 routerUsers.delete('/delete', authUser, deleteUserById)
+routerUsers.get('/getAppointments', authUser, getAppointmentByUser)
 
 
 export { routerUsers }

@@ -10,6 +10,8 @@ import {
     validateName,
     validateLastName
 } from '../validations/validations'
+import { Appointment } from '../models/Appointment'
+import { AppointmentExercise } from '../models/AppointmentExercise'
 
 const register = async (req: Request, res: Response) => {
     try {
@@ -372,4 +374,65 @@ const deleteUserById = async (req: Request, res: Response) => {
     }
 }
 
-export { register, login, account, updateUserById, deleteUserById }
+const getAppointmentByUser = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.token
+
+        const user = await User.findOne
+            ({
+                where: { id: id }
+            })
+
+        if (!user) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: 'User not found'
+                })
+        }
+
+        const userAppointment = await Appointment.find
+            ({
+                where: { user_id: id },
+                select: ['date', 'hour', 'service', 'price'],
+            })
+        const exercises = await AppointmentExercise.find
+            ({
+                where: { appointment_id: id },
+                select: ['exercise_id']
+            })
+
+        const userCustomexercise = exercises.map((exercises) => ({
+            exercise_id: exercises.exercise_id
+        }))
+
+        const userCustomAppointment = userAppointment.map((appointment) => ({
+
+            date: appointment.date,
+            hour: appointment.hour,
+            service: appointment.service,
+            price: appointment.price,
+            exercises: userCustomexercise
+        }))
+
+        return res.status(200).json
+            ({
+                success: true,
+                message: 'User appointments',
+                data: userCustomAppointment
+            })
+
+    } catch (error) {
+        return res.status(500).json
+            ({
+                success: false,
+                message: 'Cannot retrieve appointments',
+                error: error
+            })
+    }
+}
+
+
+
+
+export { register, login, account, updateUserById, deleteUserById, getAppointmentByUser }
