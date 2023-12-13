@@ -295,7 +295,7 @@ const updateUserById = async (req: Request, res: Response) => {
                     message: 'User not found'
                 })
         }
-        
+
         if (req.token.role !== 'admin') {
             const encrytedPassword = await bcrypt.hash(password, 5)
 
@@ -432,7 +432,75 @@ const getAppointmentByUser = async (req: Request, res: Response) => {
     }
 }
 
+const getInvoicesByUser = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.token
+
+        const user = await User.findOne
+            ({
+                where: { id: id }
+            })
+
+        if (!user) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: 'User not found'
+                })
+        }
+        const invoices = await Appointment.find
+            ({
+                where: { user_id: id, is_active: false },
+                select:
+                    [
+                        'date',
+                        'service',
+                        'price',
+                        'user_id',
+                    ],
+                relations: ['userAppointment']
+            })
+
+        const CustomView = invoices.map((appointment) => ({
+
+            date: appointment.date,
+            service: appointment.service,
+            price: appointment.price,
+            name: appointment.userAppointment.name,
+            last_name: appointment.userAppointment.lastName,
+            email: appointment.userAppointment.email,
+            phone: appointment.userAppointment.phone,
+            street: appointment.userAppointment.street,
+            door: appointment.userAppointment.door,
+            zipCode: appointment.userAppointment.zipCode,
+            town: appointment.userAppointment.town,
+            country: appointment.userAppointment.country
+        }))
+
+        return res.status(200).json
+            ({
+                success: true,
+                message: 'All invoices',
+                data: CustomView
+            })
+
+    } catch (error) {
+        return res.status(500).json
+            ({
+                success: false,
+                message: 'Cannot retrieve appointments',
+                error: error
+            })
+    }
+}
 
 
-
-export { register, login, account, updateUserById, deleteUserById, getAppointmentByUser }
+export {
+    register,
+    login,
+    account,
+    updateUserById,
+    deleteUserById,
+    getAppointmentByUser,
+    getInvoicesByUser
+}

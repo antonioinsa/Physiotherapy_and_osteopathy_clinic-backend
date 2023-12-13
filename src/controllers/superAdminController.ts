@@ -240,7 +240,7 @@ const getAllAppointments = async (req: Request, res: Response) => {
 const getAllInvoices = async (req: Request, res: Response) => {
     try {
 
-        const allAppointment = await Appointment.find
+        const allinvoices = await Appointment.find
             ({
                 where: { is_active: false },
                 select:
@@ -253,7 +253,7 @@ const getAllInvoices = async (req: Request, res: Response) => {
                 relations: ['userAppointment']
             })
 
-        const CustomView = allAppointment.map((appointment) => ({
+        const CustomView = allinvoices.map((appointment) => ({
 
             date: appointment.date,
             service: appointment.service,

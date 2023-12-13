@@ -5,7 +5,8 @@ import {
     account,
     updateUserById,
     deleteUserById,
-    getAppointmentByUser
+    getAppointmentByUser,
+    getInvoicesByUser
 } from "../controllers/userController";
 import { authUser } from "../middlewares/authUser";
 
@@ -17,6 +18,7 @@ routerUsers.get('/account', authUser, account)
 routerUsers.put('/update', authUser, updateUserById)
 routerUsers.delete('/delete', authUser, deleteUserById)
 routerUsers.get('/getAppointments', authUser, getAppointmentByUser)
+routerUsers.get('/myInvoices', authUser, getInvoicesByUser)
 
 
 export { routerUsers }
