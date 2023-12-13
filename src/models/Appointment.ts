@@ -40,6 +40,9 @@ export class Appointment extends BaseEntity {
     user_id!: number
 
     @Column()
+    worker!: number
+
+    @Column()
     is_active!: boolean
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })

@@ -52,6 +52,10 @@ export class Appointments1702052671982 implements MigrationInterface {
                         type: "int"
                     },
                     {
+                        name: "worker",
+                        type: "int"
+                    },
+                    {
                         name: "is_active",
                         type: "boolean",
                         default: true

@@ -6,7 +6,8 @@ import {
     deleteUserBySuperAdmin,
     updateWorkerBySuperAdmin,
     getAllAppointments,
-    getAllInvoices
+    getAllInvoices,
+
 } from "../controllers/superAdminController";
 
 const routerSuperAdmin = Router()
@@ -17,7 +18,7 @@ routerSuperAdmin.put('/updateWorker', authUser, authSuperAdmin, updateWorkerBySu
 routerSuperAdmin.put('/changeRole', authUser, authSuperAdmin, changeRoleBySuperAdmin)
 routerSuperAdmin.get('/allAppointments', authUser, authSuperAdmin, getAllAppointments)
 routerSuperAdmin.get('/invoices', authUser, authSuperAdmin, getAllInvoices)
-
+//routerSuperAdmin.get('/physiotherapy', authUser, authSuperAdmin, physiotherapyAppointments)
 
 
 export { routerSuperAdmin }

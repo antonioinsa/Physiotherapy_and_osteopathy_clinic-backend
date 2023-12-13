@@ -393,8 +393,15 @@ const getAppointmentByUser = async (req: Request, res: Response) => {
 
         const userAppointment = await Appointment.find
             ({
-                where: { user_id: id },
-                select: ['date', 'hour', 'service', 'price'],
+                where: { user_id: id, is_active: true },
+                select:
+                    [
+                        'date',
+                        'hour',
+                        'service',
+                        'price'
+                    ],
+                relations: ['appointmentAppointmentExercise']
             })
         const exercises = await AppointmentExercise.find
             ({

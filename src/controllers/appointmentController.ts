@@ -7,12 +7,10 @@ import {
     validateService,
     validateAppointment
 } from '../validations/validations'
-import { AppointmentExercise } from '../models/AppointmentExercise'
-
 
 const newAppointment = async (req: Request, res: Response) => {
     try {
-        const { date, hour, service } = req.body
+        const { date, hour, service, worker } = req.body
 
         const user = await User.findOne
             ({
@@ -75,7 +73,8 @@ const newAppointment = async (req: Request, res: Response) => {
                 date: formattedDate,
                 hour,
                 service,
-                user_id: req.token.id
+                user_id: req.token.id,
+                worker
             }).save()
 
         return res.status(200).json
@@ -227,56 +226,6 @@ const deleteAppointment = async (req: Request, res: Response) => {
             })
     }
 }
-
-// const getAppointmentByAdmin = async (req: Request, res: Response) => {
-//     try {
-//         const { id } = req.token
-
-//         const admin = await User.findOne
-//             ({
-//                 where: { id: id }
-//             })
-
-//         if (!admin) {
-//             return res.status(400).json
-//                 ({
-//                     success: false,
-//                     message: 'Admin not found'
-//                 })
-//         }
-
-//         const physiotherapyAppointment = await User.find
-//             ({
-//                 where: { role: 'admin' },
-//                 select: ['date', 'hour', 'service', 'price'],
-//                 relations: ['appointments']
-//             })
-
-//         const userCustomAppointment = physiotherapyAppointment.map((physiotherapyAppointment) => ({
-
-//             date: appointment.date,
-//             hour: appointment.hour,
-//             service: appointment.service,
-//             price: appointment.price,
-//             exercises: userCustomexercise
-//         }))
-
-//         return res.status(200).json
-//             ({
-//                 success: true,
-//                 message: 'User appointments',
-//                 data: userCustomAppointment
-//             })
-
-//     } catch (error) {
-//         return res.status(500).json
-//             ({
-//                 success: false,
-//                 message: 'Cannot retrieve appointments',
-//                 error: error
-//             })
-//     }
-// }
 
 
 export { 
