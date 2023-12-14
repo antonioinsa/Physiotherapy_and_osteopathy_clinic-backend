@@ -28,13 +28,13 @@ export class Appointment extends BaseEntity {
     date!: string
 
     @Column({ type: "enum", enum: hours })
-    hour!: hours
+    hour!: string
 
     @Column({ type: "decimal", precision: 4, scale: 2, default: 40 })
     price!: number
 
     @Column({ type: "enum", enum: services })
-    service!: services
+    service!: string
 
     @Column()
     user_id!: number

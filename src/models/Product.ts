@@ -2,6 +2,7 @@ import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "t
 import { OrderProduct } from "./OrderProduct";
 
 
+
 @Entity("products")
 export class Product extends BaseEntity {
 

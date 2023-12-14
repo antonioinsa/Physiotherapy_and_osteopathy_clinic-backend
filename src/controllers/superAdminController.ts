@@ -6,7 +6,6 @@ import {
 } from '../validations/validations';
 import { Appointment } from '../models/Appointment';
 
-
 const deleteUserBySuperAdmin = async (req: Request, res: Response) => {
     try {
         if (req.token.role !== 'superAdmin') {
@@ -286,47 +285,47 @@ const getAllInvoices = async (req: Request, res: Response) => {
     }
 }
 
-// const physiotherapyAppointments = async (req: Request, res: Response) => {
-//     try {
-//         const physio = await Appointment.find
-//             ({
-//                 where: { service: physiotherapy, is_active: true },
-//                 select:
-//                     [
-//                         'date',
-//                         'hour',
-//                         'price',
-//                         'user_id',
-//                     ],
-//                 relations: ['userAppointment']
-//             })
+const physiotherapyAppointments = async (req: Request, res: Response) => {
+    try {
+        const physio = await Appointment.find
+            ({
+                where: { service: 'physiotherapy', is_active: true },
+                select:
+                    [
+                        'date',
+                        'hour',
+                        'price',
+                        'user_id',
+                    ],
+                relations: ['userAppointment']
+            })
 
-//         const CustomView = physio.map((appointment) => ({
+        const CustomView = physio.map((appointment) => ({
 
-//             date: appointment.date,
-//             name: appointment.userAppointment.name,
-//             last_name: appointment.userAppointment.lastName,
-//             email: appointment.userAppointment.email,
-//             phone: appointment.userAppointment.phone,
+            date: appointment.date,
+            name: appointment.userAppointment.name,
+            last_name: appointment.userAppointment.lastName,
+            email: appointment.userAppointment.email,
+            phone: appointment.userAppointment.phone,
             
-//         }))
+        }))
 
-//         return res.status(200).json
-//             ({
-//                 success: true,
-//                 message: 'All invoices',
-//                 data: CustomView
-//             })
+        return res.status(200).json
+            ({
+                success: true,
+                message: 'All invoices',
+                data: CustomView
+            })
 
-//     } catch (error) {
-//         return res.status(500).json
-//             ({
-//                 success: false,
-//                 message: 'Cannot retrieve appointments',
-//                 error: error
-//             })
-//     }
-// }
+    } catch (error) {
+        return res.status(500).json
+            ({
+                success: false,
+                message: 'Cannot retrieve appointments',
+                error: error
+            })
+    }
+}
 
 export {
     deleteUserBySuperAdmin,
@@ -334,7 +333,7 @@ export {
     changeRoleBySuperAdmin,
     getAllAppointments,
     getAllInvoices,
-
+    physiotherapyAppointments
 }
 
 
