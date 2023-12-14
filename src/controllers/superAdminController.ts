@@ -192,6 +192,7 @@ const getAllAppointments = async (req: Request, res: Response) => {
 
         const allAppointment = await Appointment.find
             ({
+                where: { is_active: true },
                 select:
                     [
                         'id',
@@ -327,13 +328,56 @@ const physiotherapyAppointments = async (req: Request, res: Response) => {
     }
 }
 
+const osteopathyAppointments = async (req: Request, res: Response) => {
+    try {
+        const physio = await Appointment.find
+            ({
+                where: { service: 'osteopathy', is_active: true },
+                select:
+                    [
+                        'date',
+                        'hour',
+                        'price',
+                        'user_id',
+                    ],
+                relations: ['userAppointment']
+            })
+
+        const CustomView = physio.map((appointment) => ({
+
+            date: appointment.date,
+            name: appointment.userAppointment.name,
+            last_name: appointment.userAppointment.lastName,
+            email: appointment.userAppointment.email,
+            phone: appointment.userAppointment.phone,
+            
+        }))
+
+        return res.status(200).json
+            ({
+                success: true,
+                message: 'All invoices',
+                data: CustomView
+            })
+
+    } catch (error) {
+        return res.status(500).json
+            ({
+                success: false,
+                message: 'Cannot retrieve appointments',
+                error: error
+            })
+    }
+}
+
 export {
     deleteUserBySuperAdmin,
     updateWorkerBySuperAdmin,
     changeRoleBySuperAdmin,
     getAllAppointments,
     getAllInvoices,
-    physiotherapyAppointments
+    physiotherapyAppointments,
+    osteopathyAppointments
 }
 
 

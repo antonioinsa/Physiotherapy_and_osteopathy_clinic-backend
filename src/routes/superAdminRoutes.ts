@@ -7,7 +7,8 @@ import {
     updateWorkerBySuperAdmin,
     getAllAppointments,
     getAllInvoices,
-    physiotherapyAppointments
+    physiotherapyAppointments,
+    osteopathyAppointments
 } from "../controllers/superAdminController";
 
 const routerSuperAdmin = Router()
@@ -19,6 +20,7 @@ routerSuperAdmin.put('/changeRole', authUser, authSuperAdmin, changeRoleBySuperA
 routerSuperAdmin.get('/allAppointments', authUser, authSuperAdmin, getAllAppointments)
 routerSuperAdmin.get('/invoices', authUser, authSuperAdmin, getAllInvoices)
 routerSuperAdmin.get('/physiotherapy', authUser, authSuperAdmin, physiotherapyAppointments)
+routerSuperAdmin.get('/osteopathy', authUser, authSuperAdmin, osteopathyAppointments)
 
 
 export { routerSuperAdmin }
