@@ -3,11 +3,11 @@ import { AppointmentExercise } from "./AppointmentExercise";
 import { Appointment } from "./Appointment";
 
 enum exercisesClass {
-    flexibility = "Flexibility",
-    tendonitis = "Tendonitis",
-    neuropahty = "Neuropahty",
-    cervical = "Cervical",
-    hyperkyphosis = "Hyperkyphosis",
+    flexibility = "flexibility",
+    tendonitis = "tendonitis",
+    neuropahty = "neuropahty",
+    cervical = "cervical",
+    hyperkyphosis = "hyperkyphosis",
 }
 
 @Entity("exercises")
@@ -20,7 +20,7 @@ export class Exercise extends BaseEntity {
     activity!: string
 
     @Column({ type: "enum", enum: exercisesClass })
-    type!: exercisesClass
+    type!: string
 
     @Column()
     description!: string

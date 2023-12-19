@@ -4,6 +4,7 @@ import {
     login,
     account,
     updateUserById,
+    updateUserPasswordById,
     deleteUserById,
     getAppointmentByUser,
     getInvoicesByUser
@@ -19,6 +20,7 @@ routerUsers.put('/update', authUser, updateUserById)
 routerUsers.delete('/delete', authUser, deleteUserById)
 routerUsers.get('/getAppointments', authUser, getAppointmentByUser)
 routerUsers.get('/myInvoices', authUser, getInvoicesByUser)
+routerUsers.put('/updatePassword', authUser, updateUserPasswordById)
 
 
 export { routerUsers }

@@ -1,0 +1,10 @@
+insert into appointments (id, date, hour, service, user_id, worker) values (1, '2024-01-04', '09:00', 'physiotherapy', '5', '11');
+insert into appointments (id, date, hour, service, user_id, worker) values (2, '2024-02-09', '12:45', 'osteopathy', '9', '12');
+insert into appointments (id, date, hour, service, user_id, worker) values (3, '2024-02-01', '10:15', 'osteopathy', '1', '12');
+insert into appointments (id, date, hour, service, user_id, worker) values (4, '2024-03-18', '16:00', 'physiotherapy', '10', '11');
+insert into appointments (id, date, hour, service, user_id, worker) values (5, '2024-03-04', '17:15', 'physiotherapy', '3', '11');
+insert into appointments (id, date, hour, service, user_id, worker) values (6, '2024-01-01', '10:15', 'physiotherapy', '15', '11');
+insert into appointments (id, date, hour, service, user_id, worker) values (7, '2024-01-14', '09:00', 'osteopathy', '1', '12');
+insert into appointments (id, date, hour, service, user_id, worker) values (8, '2024-03-14', '18:30', 'physiotherapy', '7', '11');
+insert into appointments (id, date, hour, service, user_id, worker) values (9, '2024-02-23', '17:15', 'physiotherapy', '3', '11');
+insert into appointments (id, date, hour, service, user_id, worker) values (10, '2024-03-23', '18:30', 'osteopathy', '7', '12');

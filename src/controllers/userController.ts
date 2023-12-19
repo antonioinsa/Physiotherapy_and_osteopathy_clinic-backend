@@ -157,7 +157,7 @@ const login = async (req: Request, res: Response) => {
                     message: 'User or password is not valid'
                 })
         }
-
+                                               
         if (!bcrypt.compareSync(password, user.password)) {
             return res.status(401).json
                 ({
@@ -235,7 +235,6 @@ const updateUserById = async (req: Request, res: Response) => {
             lastName,
             phone,
             email,
-            password,
             street,
             door,
             zipCode,
@@ -275,14 +274,6 @@ const updateUserById = async (req: Request, res: Response) => {
                 })
         }
 
-        if (validatePassword(password)) {
-            return res.status(400).json
-                ({
-                    success: false,
-                    message: validatePassword(password)
-                })
-        }
-
         const userExist = await User.findOne
             ({
                 where: { id: req.token.id }
@@ -297,7 +288,6 @@ const updateUserById = async (req: Request, res: Response) => {
         }
 
         if (req.token.role !== 'admin') {
-            const encrytedPassword = await bcrypt.hash(password, 5)
 
             await User.update
                 (
@@ -309,7 +299,6 @@ const updateUserById = async (req: Request, res: Response) => {
                         lastName,
                         phone,
                         email,
-                        password: encrytedPassword,
                         street,
                         door,
                         zipCode,
@@ -339,6 +328,64 @@ const updateUserById = async (req: Request, res: Response) => {
             ({
                 success: false,
                 message: 'User cannot be updated',
+                error: error
+            })
+    }
+}
+
+const updateUserPasswordById = async (req: Request, res: Response) => {
+    try {
+        const {
+            password
+        } = req.body
+
+        if (validatePassword(password)) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: validatePassword(password)
+                })
+        }
+
+        const userExist = await User.findOne
+            ({
+                where: { id: req.token.id }
+            })
+
+        if (!userExist) {
+            return res.status(400).json
+                ({
+                    success: false,
+                    message: 'User not found'
+                })
+        }
+            const encrytedPassword = await bcrypt.hash(password, 5)
+
+            await User.update
+                (
+                    {
+                        id: req.token.id
+                    },
+                    {
+                        password: encrytedPassword
+                    }
+                )
+            const updateUserPassword = await User.findOneBy
+                ({
+                    id: req.token.id
+                })
+
+            return res.status(200).json({
+                success: true,
+                message: 'Updated password',
+                data: updateUserPassword
+            })
+
+    } catch (error) {
+        return res.status(500).json
+            ({
+                success: false,
+                message: 'Password cannot be updated',
                 error: error
             })
     }
@@ -390,10 +437,10 @@ const getAppointmentByUser = async (req: Request, res: Response) => {
                     message: 'User not found'
                 })
         }
-
+        
         const userAppointment = await Appointment.find
             ({
-                where: { user_id: id, is_active: true },
+                where: { user_id: id },
                 select:
                     [
                         'date',
@@ -401,8 +448,9 @@ const getAppointmentByUser = async (req: Request, res: Response) => {
                         'service',
                         'price'
                     ],
-                relations: ['appointmentAppointmentExercise']
+                //relations: ['appointments']
             })
+            console.log('paso3');
         const exercises = await AppointmentExercise.find
             ({
                 where: { appointment_id: id },
@@ -507,6 +555,7 @@ export {
     login,
     account,
     updateUserById,
+    updateUserPasswordById,
     deleteUserById,
     getAppointmentByUser,
     getInvoicesByUser
