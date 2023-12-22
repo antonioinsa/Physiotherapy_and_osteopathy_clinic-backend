@@ -202,6 +202,7 @@ const getAllAppointments = async (req: Request, res: Response) => {
                         'price',
                         'user_id',
                         'is_active',
+                        'worker',
                         'created_at',
                         'updated_at'
                     ],
@@ -213,9 +214,13 @@ const getAllAppointments = async (req: Request, res: Response) => {
             apointment_number: appointment.id,
             name: appointment.userAppointment.name,
             last_name: appointment.userAppointment.lastName,
+            email:appointment.userAppointment.email,
+            phone: appointment.userAppointment.phone,
             date: appointment.date,
             hour: appointment.hour,
             service: appointment.service,
+            name_worker: appointment.userAppointment.name,
+            lastName_worker: appointment.userAppointment.lastName,
             price: appointment.price,
 
         }))

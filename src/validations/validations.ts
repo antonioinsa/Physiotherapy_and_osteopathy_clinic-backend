@@ -148,7 +148,7 @@ const validateHour = (hour: string) => {
     const validHours = ['09:00', '10:15', '11:30', '12:45', '16:00', '17:15', '18:30']
 
     if (!validHours.includes(hour)) {
-        return 'Incorrect hour, please choose a valid hour (09:00, 10:15, 11:30, 12:45, 14:00, 16:00, 17:15, 18:30)'
+        return 'Incorrect hour, please choose a valid hour (09:00, 10:15, 11:30, 12:45, 16:00, 17:15, 18:30)'
     }
 
     if (dayjs(hour, "HH:mm").isBefore(today, 'minute')) {

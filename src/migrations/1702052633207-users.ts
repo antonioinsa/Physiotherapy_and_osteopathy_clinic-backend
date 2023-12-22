@@ -83,6 +83,11 @@ export class Users1702052633207 implements MigrationInterface {
                         default: "user"
                     },
                     {
+                        name: "specialty",
+                        type: "varchar",
+                        length: "20",
+                    },
+                    {
                         name: "created_at",
                         type: "timestamp",
                         default: "CURRENT_TIMESTAMP"

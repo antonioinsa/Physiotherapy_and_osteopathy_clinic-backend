@@ -52,6 +52,15 @@ export class Appointment extends BaseEntity {
     updated_at!: Date
 
 
+    
+    @ManyToOne(() => User, (user) => user.userAppointments)
+    @JoinColumn({ name: "user_id" })
+    userAppointment!: User;
+    
+    @OneToMany(() => AppointmentExercise, (appointmentExercise) =>
+    appointmentExercise.appointmentAppointmentExercise)
+    appointments!: AppointmentExercise[]
+
     @ManyToMany(() => Exercise)
     @JoinTable({
         name: "appointmentexercise",
@@ -64,12 +73,4 @@ export class Appointment extends BaseEntity {
             referencedColumnName: "id"
         }
     }) appointmentExercise!: Exercise[]
-
-    @ManyToOne(() => User, (user) => user.userAppointments)
-    @JoinColumn({ name: "user_id" })
-    userAppointment!: User;
-
-    @OneToMany(() => AppointmentExercise, (appointment) =>
-        appointment.appointmentAppointmentExercise)
-    appointments!: AppointmentExercise[]
 }
