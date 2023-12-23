@@ -12,17 +12,15 @@ const newAppointment = async (req: Request, res: Response) => {
     try {
         const { date, hour, service, worker } = req.body
 
-        const user = await User.findOne
-            ({
-                where: { id: req.token.id }
-            })
+        const user = await User.findOne({
+            where: { id: req.token.id }
+        })
 
         if (!user) {
-            return res.status(400).json
-                ({
-                    success: false,
-                    message: 'User not found'
-                })
+            return res.status(400).json({
+                success: false,
+                message: 'User not found'
+            })
         }
 
         if (req.token.role !== "user") {
@@ -33,66 +31,70 @@ const newAppointment = async (req: Request, res: Response) => {
         }
 
         if (validateHour(hour)) {
-            return res.status(400).json
-                ({
-                    success: false,
-                    message: validateHour(hour)
-                })
+            return res.status(400).json({
+                success: false,
+                message: validateHour(hour)
+            })
         }
 
         if (validateService(service)) {
-            return res.status(400).json
-                ({
-                    success: false,
-                    message: validateService(service)
-                })
+            return res.status(400).json({
+                success: false,
+                message: validateService(service)
+            })
         }
 
         if (validateDate(date)) {
-            return res.status(400).json
-                ({
-                    success: false,
-                    message: validateDate(date)
-                })
-        }
-
-        if (validateAppointment(date, hour)) {
-            return res.status(400).json
-                ({
-                    success: false,
-                    message: validateAppointment(date, hour)
-                })
+            return res.status(400).json({
+                success: false,
+                message: validateDate(date)
+            })
         }
 
         const originalDate = date
         const [day, month, year] = originalDate.split('-')
         const formattedDate = `${year}-${month}-${day}`
 
-        const newAppointment = await Appointment.create
-            ({
+        const existingAppointment = await Appointment.findOne({
+            where: {
                 date: formattedDate,
                 hour,
                 service,
-                user_id: req.token.id,
-                worker
-            }).save()
+            },
+        });
 
-        return res.status(200).json
-            ({
-                success: true,
-                message: 'Appointment created successfully',
-                data: newAppointment
-            })
+        if (existingAppointment) {
+            return res.status(400).json({
+                success: false,
+                message: 'Appointment already exists',
+            });
+        }
+
+        // Crear la nueva cita dentro del bloque try
+        const newAppointment = await Appointment.create({
+            date: formattedDate,
+            hour,
+            service,
+            user_id: req.token.id,
+            worker
+        }).save();
+
+        // Devolver una respuesta exitosa
+        return res.status(201).json({
+            success: true,
+            message: 'Appointment created successfully',
+            data: newAppointment
+        });
 
     } catch (error) {
-        return res.status(500).json
-            ({
-                success: false,
-                message: 'Appointment cant be created',
-                error: error
-            })
+        // Manejar errores y devolver una respuesta adecuada
+        return res.status(500).json({
+            success: false,
+            message: 'Appointment can\'t be created',
+            error: error,
+        });
     }
-}
+};
 
 const updateAppointment = async (req: Request, res: Response) => {
     try {
