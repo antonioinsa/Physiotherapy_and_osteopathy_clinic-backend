@@ -1,0 +1,446 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Clinic",
+    "dateExported": "2023-12-24T03:01:41.593Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "e512ba4e-aca5-45ed-8598-4d959ebad286",
+            "name": "User",
+            "containerId": "",
+            "created": "2023-12-09T21:42:00.202Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "50523634-c4e4-4a5c-9faa-7a5e48d1857d",
+            "name": "superAdmin",
+            "containerId": "",
+            "created": "2023-12-11T07:11:32.006Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "2e62f9fb-81cb-4e1e-88b8-33dd1291051b",
+            "name": "Admin",
+            "containerId": "",
+            "created": "2023-12-12T23:55:58.506Z",
+            "sortNum": 30000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "af7c6417-3c75-48ef-a50a-c8e7738237e8",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "e512ba4e-aca5-45ed-8598-4d959ebad286",
+            "name": "Register",
+            "url": "localhost:3000/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-12-09T22:33:08.890Z",
+            "modified": "2023-12-10T21:59:07.878Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Medina\",\n  \"lastName\": \"Delsol Martinez\",\n  \"phone\": \"689445214\",\n  \"email\": \"medinas@medina.com\",\n  \"password\": \"aA@1234\",\n  \"documentId\":\"19198123A\",\n  \"street\": \"Miño\",\n  \"door\": \"158\",\n  \"zipCode\": \"40100\",\n  \"town\": \"Alava\",\n  \"country\":\"España\" \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "8d2e7f8b-cd13-46d5-b32b-d230057d8cce",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "e512ba4e-aca5-45ed-8598-4d959ebad286",
+            "name": "Login",
+            "url": "localhost:3000/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-12-09T22:51:04.584Z",
+            "modified": "2023-12-20T22:43:33.783Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"jpolkinhorn3@google.com.hk\",\n  \"password\": \"aA@1234\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a3d6d1cc-0417-4903-a0f2-5e36b5f94ccb",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "e512ba4e-aca5-45ed-8598-4d959ebad286",
+            "name": "Account",
+            "url": "localhost:3000/account",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-12-10T07:25:33.736Z",
+            "modified": "2023-12-20T22:43:45.696Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJqcG9sa2luaG9ybjNAZ29vZ2xlLmNvbS5oayIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAzMTEyMjEzLCJleHAiOjE3MDMxMjY2MTN9.ilpNxT3-RM-EFO6Xv5JNcUfjE0Ndb9ORcatgwptcWzM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "59b9e9f7-f14d-4eda-9fc2-d115da959a2d",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "e512ba4e-aca5-45ed-8598-4d959ebad286",
+            "name": "Update profile",
+            "url": "localhost:3000/update",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2023-12-10T19:39:15.497Z",
+            "modified": "2023-12-18T21:48:35.592Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"name\": \"Bradi\",\n    \"lastName\": \"Wislow Perez\",\n    \"phone\": \"661112222\",\n    \"email\": \"bradi@bradi.com\",\n    \"street\": \"Miño\",\n    \"door\": \"115\",\n    \"zipCode\": \"40100\",\n    \"town\": \"Alava\",\n    \"country\": \"España\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZW1haWwiOiJoZWFzc29uOEB0b3BsaXN0LmN6Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDI5MzYwOTUsImV4cCI6MTcwMjk1MDQ5NX0.qwDoVShPpFYz04x48nGmf2G0RGJ3IJP-59H9xGfzbJI"
+            },
+            "tests": []
+        },
+        {
+            "_id": "7910870e-d740-4763-8560-b19df3489e3f",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "e512ba4e-aca5-45ed-8598-4d959ebad286",
+            "name": "Delete profile",
+            "url": "localhost:3000/delete/",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2023-12-10T19:41:04.632Z",
+            "modified": "2023-12-11T07:08:58.278Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJnc2ltb25vbnNreTRAZWxwYWlzLmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAyMjc2MzY0LCJleHAiOjE3MDIyOTA3NjR9.KuI3ydAlQSP5uqAhUU-0YciHjaiy29g8VDRkAkj0ASg"
+            },
+            "tests": []
+        },
+        {
+            "_id": "2ee09b2c-0e88-4855-aba4-906f3f2c57b7",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "50523634-c4e4-4a5c-9faa-7a5e48d1857d",
+            "name": "Delete every User by params",
+            "url": "localhost:3000/sa/delete/6",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2023-12-11T09:48:41.782Z",
+            "modified": "2023-12-11T09:48:41.782Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJnc2ltb25vbnNreTRAZWxwYWlzLmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAyMjg3ODg0LCJleHAiOjE3MDIzMDIyODR9.WEHQ2ZqMG-iB4uM0T3FUCQ4ayTcidjaLKHfDkk06IMc"
+            },
+            "tests": []
+        },
+        {
+            "_id": "5a8c8059-e873-46f3-a5e5-5de290e1139f",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "50523634-c4e4-4a5c-9faa-7a5e48d1857d",
+            "name": "ChangeRole",
+            "url": "localhost:3000/changeRole",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2023-12-11T12:14:52.080Z",
+            "modified": "2023-12-11T14:21:00.097Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"id\": 3,\n    \"role\": \"user\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJnc2ltb25vbnNreTRAZWxwYWlzLmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAyMjk2MTMyLCJleHAiOjE3MDIzMTA1MzJ9.VPtkWhKFELQZDhegsHdhj1qFH4g4ixRcy5zbLU7OOXQ"
+            },
+            "tests": []
+        },
+        {
+            "_id": "fc0f18e5-bd84-4c9a-9388-acfa602d1cfe",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "e512ba4e-aca5-45ed-8598-4d959ebad286",
+            "name": "New Appointment",
+            "url": "localhost:3000/newAppointment",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2023-12-12T12:21:30.415Z",
+            "modified": "2023-12-23T18:47:28.685Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"date\": \"25-12-2023\",\n  \"hour\": \"09:00\",\n  \"service\": \"physiotherapy\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJqcG9sa2luaG9ybjNAZ29vZ2xlLmNvbS5oayIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAzMzUzNTk3LCJleHAiOjE3MDMzNjc5OTd9.Wzoxp5K0Ibr8qqOvZTHhwQKCAIygUAGZhYQff8B1lzE"
+            },
+            "tests": []
+        },
+        {
+            "_id": "3614c38b-b59a-41f5-bbab-1fbab244f714",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "e512ba4e-aca5-45ed-8598-4d959ebad286",
+            "name": "Update Appointment",
+            "url": "localhost:3000/updateAppointment",
+            "method": "PUT",
+            "sortNum": 90000,
+            "created": "2023-12-12T14:51:19.585Z",
+            "modified": "2023-12-15T01:31:56.275Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 5,\n  \"hour\": \"10:15\",\n  \"date\": \"16-12-2023\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJnc2ltb25vbnNreTRAZWxwYWlzLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAyNjAzODc4LCJleHAiOjE3MDI2MTgyNzh9.F14NdtxA6bv2xKStSEXn-sB4Sp9YqYohfeiR0EeQdQk"
+            },
+            "tests": []
+        },
+        {
+            "_id": "c0ea6a51-10e2-4cee-89eb-29559e922b44",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "e512ba4e-aca5-45ed-8598-4d959ebad286",
+            "name": "Delete Appointment",
+            "url": "localhost:3000/deleteAppointment/5",
+            "method": "DELETE",
+            "sortNum": 100000,
+            "created": "2023-12-12T17:12:01.823Z",
+            "modified": "2023-12-12T17:12:01.823Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJjYXJsYUBjYXJsYS5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcwMjM5NTAxMCwiZXhwIjoxNzAyNDA5NDEwfQ.1in2PU7qhm0SCfKd_pJpMxpUvovwtltEmjaZCceL4Fg"
+            },
+            "tests": []
+        },
+        {
+            "_id": "8e4daa47-e1e5-4ca2-aa77-e12ff6c4290b",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "e512ba4e-aca5-45ed-8598-4d959ebad286",
+            "name": "All  my appointments",
+            "url": "localhost:3000/getAppointments",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2023-12-12T23:39:49.373Z",
+            "modified": "2023-12-15T09:55:21.879Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZW1haWwiOiJoZWFzc29uOEB0b3BsaXN0LmN6Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDI2MzQwNjcsImV4cCI6MTcwMjY0ODQ2N30.eRtdc9QYpq4nxlPDhkYVxxKOketLja_OOmOkzbGgSE8"
+            },
+            "tests": []
+        },
+        {
+            "_id": "723c061b-7aa2-4951-aab1-ef7edfac54de",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "2e62f9fb-81cb-4e1e-88b8-33dd1291051b",
+            "name": "Update profile",
+            "url": "localhost:3000/profile",
+            "method": "PUT",
+            "sortNum": 120000,
+            "created": "2023-12-12T23:56:20.134Z",
+            "modified": "2023-12-12T23:56:20.134Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"phone\": \"661548996\",\n    \"email\": \"bradi@bradi.com\",\n    \"street\": \"Miño\",\n    \"door\": \"130\",\n    \"password\": \"aA@1234\",\n    \"zipCode\": \"46100\",\n    \"town\": \"Valencia\",\n    \"country\": \"España\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJicmFkaUBicmFkaS5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcwMjQyNTAyOSwiZXhwIjoxNzAyNDM5NDI5fQ.jDFTae1HVbUt4j1WpBah6E6AVJwtaFmJtY6OSZbwyWc"
+            },
+            "tests": []
+        },
+        {
+            "_id": "5c761c1e-4939-4aaf-bcc8-67bf0576fbb2",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "50523634-c4e4-4a5c-9faa-7a5e48d1857d",
+            "name": "All Appointments",
+            "url": "localhost:3000/allAppointments",
+            "method": "GET",
+            "sortNum": 130000,
+            "created": "2023-12-13T00:35:12.493Z",
+            "modified": "2023-12-13T00:35:12.494Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJnc2ltb25vbnNreTRAZWxwYWlzLmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAyNDI2ODQzLCJleHAiOjE3MDI0NDEyNDN9.s-zF7M_4nTYK1gMsXsCXuF4tZKLLMpbvBXqmFFLGzOY"
+            },
+            "tests": []
+        },
+        {
+            "_id": "b9eb1edd-b4ab-40a6-859a-83f75fdbd7bd",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "50523634-c4e4-4a5c-9faa-7a5e48d1857d",
+            "name": "Invoices",
+            "url": "localhost:3000/invoices",
+            "method": "GET",
+            "sortNum": 140000,
+            "created": "2023-12-13T00:46:31.281Z",
+            "modified": "2023-12-13T00:46:31.281Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJnc2ltb25vbnNreTRAZWxwYWlzLmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAyNDI2ODQzLCJleHAiOjE3MDI0NDEyNDN9.s-zF7M_4nTYK1gMsXsCXuF4tZKLLMpbvBXqmFFLGzOY"
+            },
+            "tests": []
+        },
+        {
+            "_id": "672b8913-85ff-400a-8a16-8a4afd12cfca",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "e512ba4e-aca5-45ed-8598-4d959ebad286",
+            "name": "Invoices",
+            "url": "localhost:3000/myInvoices",
+            "method": "GET",
+            "sortNum": 150000,
+            "created": "2023-12-13T01:09:56.037Z",
+            "modified": "2023-12-19T12:42:27.194Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJnc2ltb25vbnNreTRAZWxwYWlzLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAyOTg5NzM1LCJleHAiOjE3MDMwMDQxMzV9.-l27G6ilX0gE6CDzeXQKlllgDw7sYu4HohGuyqi0aPc"
+            },
+            "tests": []
+        },
+        {
+            "_id": "83b59ff9-fa9e-406b-8fd1-dc78cc3f47cd",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "2e62f9fb-81cb-4e1e-88b8-33dd1291051b",
+            "name": "Appointments with clients",
+            "url": "localhost:3000/appointments",
+            "method": "GET",
+            "sortNum": 160000,
+            "created": "2023-12-13T17:54:48.644Z",
+            "modified": "2023-12-20T15:33:28.004Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoia3NjaG5laWRlcjBAZmxpY2tyLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwMzA4NjM5OCwiZXhwIjoxNzAzMTAwNzk4fQ.oVrXXodknB2ei3CJwzo1T9Eci1FRZEL_VpS_Tr_L4Hw"
+            },
+            "tests": []
+        },
+        {
+            "_id": "10808464-4187-4b78-9f48-dbbbdfafa7c3",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "50523634-c4e4-4a5c-9faa-7a5e48d1857d",
+            "name": "Update Worker",
+            "url": "localhost:3000/updateWorker",
+            "method": "PUT",
+            "sortNum": 170000,
+            "created": "2023-12-13T19:10:50.198Z",
+            "modified": "2023-12-13T19:10:50.198Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":7,\n  \"phone\":\"773776950\",\n  \"email\":\"carla@carla.com\",\n  \"street\":\"Dexter Point\",\n  \"door\":8,\n  \"zipCode\":\"51079\",\n  \"town\":\"Lleida\",\n  \"country\":\"Spain\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJnc2ltb25vbnNreTRAZWxwYWlzLmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAyNDkwNjEyLCJleHAiOjE3MDI1MDUwMTJ9.BOjHBe2CvPRdSXFixTGQcL5BywA02oVoBzGTcGcmF8k"
+            },
+            "tests": []
+        },
+        {
+            "_id": "79e4f0de-9d02-43d5-a383-eb28fd569ba0",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "50523634-c4e4-4a5c-9faa-7a5e48d1857d",
+            "name": "Physiotherapy Appointments",
+            "url": "localhost:3000/physiotherapy",
+            "method": "GET",
+            "sortNum": 180000,
+            "created": "2023-12-14T12:09:05.455Z",
+            "modified": "2023-12-14T12:09:05.455Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJnc2ltb25vbnNreTRAZWxwYWlzLmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAyNTU0NzA0LCJleHAiOjE3MDI1NjkxMDR9.1HlEv_JmT7B454tlT_7r9VaQwZOUCA7GTLDEVXiy3e4"
+            },
+            "tests": []
+        },
+        {
+            "_id": "11cd3dae-4b1b-4248-8a5f-a9dae59e405c",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "50523634-c4e4-4a5c-9faa-7a5e48d1857d",
+            "name": "Osteopathy Appointments",
+            "url": "localhost:3000/osteopathy",
+            "method": "GET",
+            "sortNum": 190000,
+            "created": "2023-12-14T12:09:45.890Z",
+            "modified": "2023-12-14T12:09:45.890Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJnc2ltb25vbnNreTRAZWxwYWlzLmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAyNTU0NzA0LCJleHAiOjE3MDI1NjkxMDR9.1HlEv_JmT7B454tlT_7r9VaQwZOUCA7GTLDEVXiy3e4"
+            },
+            "tests": []
+        },
+        {
+            "_id": "e3a17488-ef55-497a-abef-c1aed0b4200a",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "e512ba4e-aca5-45ed-8598-4d959ebad286",
+            "name": "Update Password",
+            "url": "localhost:3000/updatePassword",
+            "method": "PUT",
+            "sortNum": 200000,
+            "created": "2023-12-18T21:51:12.176Z",
+            "modified": "2023-12-18T21:51:12.176Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"password\":\"aA@1234\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZW1haWwiOiJoZWFzc29uOEB0b3BsaXN0LmN6Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDI5MzYwOTUsImV4cCI6MTcwMjk1MDQ5NX0.qwDoVShPpFYz04x48nGmf2G0RGJ3IJP-59H9xGfzbJI"
+            },
+            "tests": []
+        },
+        {
+            "_id": "7cfc0b85-1274-4070-a4a6-dcf1619b049e",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "2e62f9fb-81cb-4e1e-88b8-33dd1291051b",
+            "name": "Exercises availables",
+            "url": "localhost:3000/exercises",
+            "method": "GET",
+            "sortNum": 210000,
+            "created": "2023-12-20T15:30:03.976Z",
+            "modified": "2023-12-20T15:30:03.976Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImVtYWlsIjoib3N1bWJsZXIyQGZhc3Rjb21wYW55LmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAzMDg2MDc2LCJleHAiOjE3MDMxMDA0NzZ9.p53CaSkiKv9oSLZIouDOOrebV9aGALu7Mr5e8VCtNI8"
+            },
+            "tests": []
+        }
+    ]
+}

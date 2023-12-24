@@ -61,40 +61,37 @@ const newAppointment = async (req: Request, res: Response) => {
                 hour,
                 service,
             },
-        });
+        })
 
         if (existingAppointment) {
             return res.status(400).json({
                 success: false,
                 message: 'Appointment already exists',
-            });
+            })
         }
 
-        // Crear la nueva cita dentro del bloque try
         const newAppointment = await Appointment.create({
             date: formattedDate,
             hour,
             service,
             user_id: req.token.id,
             worker
-        }).save();
+        }).save()
 
-        // Devolver una respuesta exitosa
         return res.status(201).json({
             success: true,
             message: 'Appointment created successfully',
             data: newAppointment
-        });
+        })
 
     } catch (error) {
-        // Manejar errores y devolver una respuesta adecuada
         return res.status(500).json({
             success: false,
             message: 'Appointment can\'t be created',
             error: error,
-        });
+        })
     }
-};
+}
 
 const updateAppointment = async (req: Request, res: Response) => {
     try {
