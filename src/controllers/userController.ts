@@ -335,9 +335,7 @@ const updateUserById = async (req: Request, res: Response) => {
 
 const updateUserPasswordById = async (req: Request, res: Response) => {
     try {
-        const {
-            password
-        } = req.body
+        const { password } = req.body
 
         if (validatePassword(password)) {
             return res.status(400).json
@@ -356,10 +354,18 @@ const updateUserPasswordById = async (req: Request, res: Response) => {
             return res.status(400).json
                 ({
                     success: false,
-                    message: 'User not found'
+                    message: 'Client or password incorrect'
                 })
         }
-            const encrytedPassword = await bcrypt.hash(password, 5)
+
+        // if (!bcrypt.compareSync(password, userExist.password)) {
+        //     return res.status(401).json
+        //         ({
+        //             success: true,
+        //             message: "Client or password incorrect"
+        //         })
+        // }
+            const encrytedPassword = bcrypt.hashSync(password, 5)
 
             await User.update
                 (
