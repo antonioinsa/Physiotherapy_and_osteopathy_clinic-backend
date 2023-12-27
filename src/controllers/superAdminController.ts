@@ -49,7 +49,9 @@ const updateWorkerBySuperAdmin = async (req: Request, res: Response) => {
             door,
             zipCode,
             town,
-            country
+            country,
+            specialty,
+            picture
         } = req.body
 
         if (validatePhone(phone)) {
@@ -104,7 +106,9 @@ const updateWorkerBySuperAdmin = async (req: Request, res: Response) => {
                     door,
                     zipCode,
                     town,
-                    country
+                    country,
+                    specialty,
+                    picture
                 }
             )
         const updateWorker = await User.findOne
@@ -112,6 +116,8 @@ const updateWorkerBySuperAdmin = async (req: Request, res: Response) => {
                 select: [
                     'name',
                     'lastName',
+                    'specialty',
+                    'picture',
                     'phone',
                     'email',
                     'street',

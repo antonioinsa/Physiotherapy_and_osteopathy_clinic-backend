@@ -449,6 +449,7 @@ const getAppointmentByUser = async (req: Request, res: Response) => {
                 where: { user_id: id },
                 select:
                     [
+                        'id',
                         'date',
                         'hour',
                         'service',
@@ -456,7 +457,7 @@ const getAppointmentByUser = async (req: Request, res: Response) => {
                     ],
                 //relations: ['appointments']
             })
-            console.log('paso3');
+            
         const exercises = await AppointmentExercise.find
             ({
                 where: { appointment_id: id },
@@ -469,6 +470,7 @@ const getAppointmentByUser = async (req: Request, res: Response) => {
 
         const userCustomAppointment = userAppointment.map((appointment) => ({
 
+            id: appointment.id,
             date: appointment.date,
             hour: appointment.hour,
             service: appointment.service,

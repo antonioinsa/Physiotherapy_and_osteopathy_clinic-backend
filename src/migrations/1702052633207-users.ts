@@ -86,6 +86,13 @@ export class Users1702052633207 implements MigrationInterface {
                         name: "specialty",
                         type: "varchar",
                         length: "20",
+                        default: "null"
+                    },
+                    {
+                        name: "picture",
+                        type: "varchar",
+                        length: "255",
+                        default: "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"
                     },
                     {
                         name: "created_at",

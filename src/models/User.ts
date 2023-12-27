@@ -50,6 +50,9 @@ export class User extends BaseEntity {
   @Column()
   specialty!: string
 
+  @Column()
+  picture!: string
+
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created_at!: Date
 

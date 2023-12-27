@@ -138,7 +138,7 @@ const validateHour = (hour: string) => {
     let today = dayjs()
 
     if (!hour) {
-        return 'Must provide a hour'
+        return 'Must provide an hour'
     }
 
     if (typeof (hour) !== "string") {
@@ -152,7 +152,12 @@ const validateHour = (hour: string) => {
     }
 
     if (dayjs(hour, "HH:mm").isBefore(today, 'minute')) {
-        return 'Please choose an other available hour'
+        return 'Please choose another available hour'
+    }
+
+    const currentHour = dayjs().format("HH:mm")
+    if (validHours.some(validHour => dayjs(validHour, "HH:mm").isBefore(currentHour, 'minute'))) {
+        return 'Current hour exceeds available hours'
     }
 }
 
