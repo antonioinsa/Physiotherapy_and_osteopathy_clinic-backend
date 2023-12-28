@@ -10,11 +10,11 @@ const validateEmail = (email: string) => {
     if (!email) {
         return 'Must provide an email'
     }
-
+    
     if (typeof (email) !== "string") {
         return 'Incorrect email'
     }
-
+    
     if (email.length > 100) {
         return 'Maximum 100 characters'
     }
@@ -38,25 +38,42 @@ const validatePassword = (password: string) => {
     if (password.length > 12) {
         return 'Maximum 12 characters'
     }
-
 }
 
-const validateDni = (dni: string) => {
+const validateConfirmPassword = (password: string, confirmPassword: string) => {
+    if (!confirmPassword) {
+        return 'Must confirm password'
+    }
+
+    if (typeof confirmPassword !== 'string') {
+        return 'Incorrect password'
+    }
+
+    if (confirmPassword.length > 12) {
+        return 'Maximum 12 characters'
+    }
+
+    if (password !== confirmPassword) {
+        return 'Passwords must match'
+    }
+}
+
+const validateDni = (documentId: string) => {
     const dniRegex = /^[0-9]{8}[A-Za-z]$/
 
-    if (!dniRegex.test(dni)) {
+    if (!dniRegex.test(documentId)) {
         return 'Document ID is not valid'
     }
 
-    if (!dni) {
+    if (!documentId) {
         return 'Must provide a document ID'
     }
 
-    if (typeof (dni) !== "string") {
+    if (typeof (documentId) !== "string") {
         return 'Incorrect document ID'
     }
 
-    if (dni.length > 9) {
+    if (documentId.length > 9) {
         return 'Maximum 8 letters and 1 character'
     }
 }
@@ -182,6 +199,126 @@ const validateAppointment = (date: string, hour: string) => {
     }
 }
 
+const validateTown = (town: string) => {
+    if (town.length < 4 || town.length > 30) {
+        return 'Minimum 4 and Maximum 30 characters'
+    }
+
+    if (/\s/.test(town) && /^\s|\s$/.test(town)) {
+        return 'Cannot contain spaces at the beginning or end'
+    }
+
+    if (!/^[a-zA-Z0-9\s']+$/g.test(town)) {
+        return 'Cannot contain special characters, except apostrophe'
+    }
+}
+
+const validateCountry = (country: string) => {
+    if (country.length < 4 || country.length > 30) {
+        return 'Minimum 4 and Maximum 30 characters'
+    }
+
+    if (/\s/.test(country) && /^\s|\s$/.test(country)) {
+        return 'Cannot contain spaces at the beginning or end'
+    }
+
+    if (!/^[a-zA-Z0-9\s']+$/g.test(country)) {
+        return 'Cannot contain special characters, except apostrophe'
+    }
+}
+
+const validateZipCode = (zipCode: string) => {
+    if (zipCode.length !== 5) {
+        return 'Must have exactly 5 characters'
+    }
+}
+
+const validateDoor = (door: string) => {
+    if (door.length < 1 || door.length > 4) {
+        return 'Minimum 1 and Maximum 4 characters'
+    }
+
+    if (!/\d/.test(door)) {
+        return 'Must contain at least one number'
+    }
+
+    if (!/^[a-zA-Z0-9]{0,4}$/.test(door)) {
+        return 'Maximum 4 characters'
+    }
+
+    if (/\s/.test(door) && /^\s|\s$/.test(door)) {
+        return 'Cannot contain spaces at the beginning or end'
+    }
+
+    if (!/^[a-zA-Z0-9\s]*$/g.test(door)) {
+        return 'Cannot contain special characters'
+    }
+}
+
+const validateStreet = (street: string) => {
+    if (street.length < 4 || street.length > 100) {
+        return 'Minimum 4 and Maximum 100 characters'
+    }
+
+    if (/\s/.test(street) && /^\s|\s$/.test(street)) {
+        return 'Cannot contain spaces at the beginning or end'
+    }
+
+    if (!/^[a-zA-Z0-9\s']+$/g.test(street)) {
+        return 'Cannot contain special characters, except apostrophe'
+    }
+}
+
+const validateSpecialty = (specialty: string) => {
+    if (!specialty) {
+        return 'Must provide a specialty'
+    }
+
+    if (typeof specialty !== 'string') {
+        return 'Incorrect specialty'
+    }
+
+    if (specialty !== 'physiotherapy' && specialty !== 'osteopathy') {
+        return 'You must choose a valid specialty (physiotherapy, osteopathy)'
+    }
+}
+
+const validatePicture = (picture: string) => {
+    if (!picture) {
+        return 'Must provide a picture'
+    }
+
+    if (typeof picture !== 'string') {
+        return 'Incorrect picture'
+    }
+
+    if (picture.length > 255) {
+        return 'Maximum 255 characters'
+    }
+
+    if (!/^https?:\/\/\S+$/.test(picture)) {
+        return 'Picture must be a valid URL'
+    }
+
+    if (!/\.(jpg|jpeg|png)$/i.test(picture)) {
+        return 'Picture must be a valid URL with a valid format (jpg, jpeg, png)'
+    }
+}
+
+const validateRole = (role: string) => {
+    if (!role) {
+        return 'Must provide a role'
+    }
+
+    if (typeof role !== 'string') {
+        return 'Incorrect role'
+    }
+
+    if (role !== 'user' && role !== 'admin') {
+        return 'You must choose a valid role (user, admin)'
+    }
+}
+
 export {
     validateEmail,
     validatePassword,
@@ -192,5 +329,14 @@ export {
     validateService,
     validateDate,
     validateHour,
-    validateAppointment
+    validateAppointment,
+    validateConfirmPassword,
+    validateTown,
+    validateCountry,
+    validateZipCode,
+    validateDoor,
+    validateStreet,
+    validateSpecialty,
+    validatePicture,
+    validateRole
 }

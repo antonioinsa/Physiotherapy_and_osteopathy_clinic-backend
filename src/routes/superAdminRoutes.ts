@@ -5,6 +5,7 @@ import {
     changeRoleBySuperAdmin,
     deleteUserBySuperAdmin,
     updateWorkerBySuperAdmin,
+    updateUserBySuperAdmin,
     getAllAppointments,
     getAllInvoices,
     physiotherapyAppointments,
@@ -18,6 +19,7 @@ const routerSuperAdmin = Router()
 
 routerSuperAdmin.delete('/delete/:id', authUser, authSuperAdmin, deleteUserBySuperAdmin)
 routerSuperAdmin.put('/updateWorker', authUser, authSuperAdmin, updateWorkerBySuperAdmin)
+routerSuperAdmin.put('/updateUser', authUser, authSuperAdmin, updateUserBySuperAdmin)
 routerSuperAdmin.put('/changeRole', authUser, authSuperAdmin, changeRoleBySuperAdmin)
 routerSuperAdmin.get('/allAppointments', authUser, authSuperAdmin, getAllAppointments)
 routerSuperAdmin.get('/invoices', authUser, authSuperAdmin, getAllInvoices)
