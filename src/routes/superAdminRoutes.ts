@@ -8,7 +8,8 @@ import {
     getAllAppointments,
     getAllInvoices,
     physiotherapyAppointments,
-    osteopathyAppointments
+    osteopathyAppointments,
+    getAllUsers
 } from "../controllers/superAdminController";
 
 const routerSuperAdmin = Router()
@@ -21,6 +22,7 @@ routerSuperAdmin.get('/allAppointments', authUser, authSuperAdmin, getAllAppoint
 routerSuperAdmin.get('/invoices', authUser, authSuperAdmin, getAllInvoices)
 routerSuperAdmin.get('/physiotherapy', authUser, authSuperAdmin, physiotherapyAppointments)
 routerSuperAdmin.get('/osteopathy', authUser, authSuperAdmin, osteopathyAppointments)
+routerSuperAdmin.get('/allUsers', authUser, authSuperAdmin, getAllUsers)
 
 
 export { routerSuperAdmin }

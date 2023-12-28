@@ -43,6 +43,9 @@ const deleteUserBySuperAdmin = async (req: Request, res: Response) => {
 const updateWorkerBySuperAdmin = async (req: Request, res: Response) => {
     try {
         const {
+            name,
+            lastName,
+            documentId,
             phone,
             email,
             street,
@@ -100,6 +103,9 @@ const updateWorkerBySuperAdmin = async (req: Request, res: Response) => {
                     id
                 },
                 {
+                    name,
+                    lastName,
+                    documentId,
                     phone,
                     email,
                     street,
@@ -116,6 +122,7 @@ const updateWorkerBySuperAdmin = async (req: Request, res: Response) => {
                 select: [
                     'name',
                     'lastName',
+                    'documentId',
                     'specialty',
                     'picture',
                     'phone',
@@ -381,12 +388,55 @@ const osteopathyAppointments = async (req: Request, res: Response) => {
     }
 }
 
+const getAllUsers = async (req: Request, res: Response) => {
+    try {
+
+        const allUsers = await User.find
+        ({
+            where: { role: 'admin' },
+            select:
+                [
+                    'id',
+                    'name',
+                    'lastName',
+                    'documentId',
+                    'specialty',
+                    'picture',
+                    'phone',
+                    'email',
+                    'street',
+                    'door',
+                    'zipCode',
+                    'town',
+                    'country'
+                ]
+            
+        })
+
+        return res.status(200).json
+            ({
+                success: true,
+                message: 'All Users',
+                data: allUsers
+            })
+
+    } catch (error) {
+        return res.status(500).json
+            ({
+                success: false,
+                message: 'Cannot retrieve appointments',
+                error: error
+            })
+    }
+}
+
 export {
     deleteUserBySuperAdmin,
     updateWorkerBySuperAdmin,
     changeRoleBySuperAdmin,
     getAllAppointments,
     getAllInvoices,
+    getAllUsers,
     physiotherapyAppointments,
     osteopathyAppointments
 }
