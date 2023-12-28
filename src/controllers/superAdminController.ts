@@ -388,12 +388,54 @@ const osteopathyAppointments = async (req: Request, res: Response) => {
     }
 }
 
+const getAllWorkers = async (req: Request, res: Response) => {
+    try {
+
+        const allWorkers = await User.find
+        ({
+            where: { role: 'admin' },
+            select:
+                [
+                    'id',
+                    'name',
+                    'lastName',
+                    'documentId',
+                    'specialty',
+                    'picture',
+                    'phone',
+                    'email',
+                    'street',
+                    'door',
+                    'zipCode',
+                    'town',
+                    'country'
+                ]
+            
+        })
+
+        return res.status(200).json
+            ({
+                success: true,
+                message: 'All Workers',
+                data: allWorkers
+            })
+
+    } catch (error) {
+        return res.status(500).json
+            ({
+                success: false,
+                message: 'Cannot retrieve appointments',
+                error: error
+            })
+    }
+}
+
 const getAllUsers = async (req: Request, res: Response) => {
     try {
 
         const allUsers = await User.find
         ({
-            where: { role: 'admin' },
+            where: { role: 'user' },
             select:
                 [
                     'id',
@@ -436,6 +478,7 @@ export {
     changeRoleBySuperAdmin,
     getAllAppointments,
     getAllInvoices,
+    getAllWorkers,
     getAllUsers,
     physiotherapyAppointments,
     osteopathyAppointments

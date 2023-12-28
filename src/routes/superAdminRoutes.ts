@@ -9,6 +9,7 @@ import {
     getAllInvoices,
     physiotherapyAppointments,
     osteopathyAppointments,
+    getAllWorkers,
     getAllUsers
 } from "../controllers/superAdminController";
 
@@ -22,6 +23,7 @@ routerSuperAdmin.get('/allAppointments', authUser, authSuperAdmin, getAllAppoint
 routerSuperAdmin.get('/invoices', authUser, authSuperAdmin, getAllInvoices)
 routerSuperAdmin.get('/physiotherapy', authUser, authSuperAdmin, physiotherapyAppointments)
 routerSuperAdmin.get('/osteopathy', authUser, authSuperAdmin, osteopathyAppointments)
+routerSuperAdmin.get('/allWorkers', authUser, authSuperAdmin, getAllWorkers)
 routerSuperAdmin.get('/allUsers', authUser, authSuperAdmin, getAllUsers)
 
 
