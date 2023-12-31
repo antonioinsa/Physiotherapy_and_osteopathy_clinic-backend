@@ -140,9 +140,9 @@ const validateDate = (date: string) => {
         return 'Must provide a date'
     }
 
-    if (!/^\d{2}-\d{2}-\d{4}$/.test(date)) {
-        return 'Incorrect date, please choose a valid date DD-MM-YYYY'
-    }
+    // if (!/^\d{2}-\d{2}-\d{4}$/.test(date)) {
+    //     return 'Incorrect date, please choose a valid date DD-MM-YYYY'
+    // }
 
     if (dayjs(date, "DD-MM-YYYY").isBefore(today, 'day')) {
         return 'Current date is before selected date. Please, choose a valid date'

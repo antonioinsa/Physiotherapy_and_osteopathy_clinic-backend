@@ -157,7 +157,7 @@ const login = async (req: Request, res: Response) => {
                     message: 'User or password is not valid'
                 })
         }
-                                               
+
         if (!bcrypt.compareSync(password, user.password)) {
             return res.status(401).json
                 ({
@@ -335,13 +335,15 @@ const updateUserById = async (req: Request, res: Response) => {
 
 const updateUserPasswordById = async (req: Request, res: Response) => {
     try {
-        const { password } = req.body
+        const { password, newPassword } = req.body;
 
-        if (validatePassword(password)) {
+        const passwordValidationError = validatePassword(newPassword);
+
+        if (passwordValidationError) {
             return res.status(400).json
                 ({
                     success: false,
-                    message: validatePassword(password)
+                    message: passwordValidationError,
                 })
         }
 
@@ -351,49 +353,51 @@ const updateUserPasswordById = async (req: Request, res: Response) => {
             })
 
         if (!userExist) {
-            return res.status(400).json
+            return res.status(400).json({
+                success: false,
+                message: 'Incorrect username or password'
+            })
+        }
+
+        const isPasswordValid = bcrypt.compareSync(password, userExist.password)
+
+        if (!isPasswordValid) {
+            return res.status(401).json
                 ({
                     success: false,
-                    message: 'Client or password incorrect'
+                    message: 'Incorrect username or password'
                 })
         }
 
-        // if (!bcrypt.compareSync(password, userExist.password)) {
-        //     return res.status(401).json
-        //         ({
-        //             success: true,
-        //             message: "Client or password incorrect"
-        //         })
-        // }
-            const encrytedPassword = bcrypt.hashSync(password, 5)
+        const newEncryptedPassword = bcrypt.hashSync(newPassword, 5)
 
-            await User.update
-                (
-                    {
-                        id: req.token.id
-                    },
-                    {
-                        password: encrytedPassword
-                    }
-                )
-            const updateUserPassword = await User.findOneBy
-                ({
-                    id: req.token.id
+        await User.update
+            ({
+                id: req.token.id
+            },
+                {
+                    password: newEncryptedPassword
                 })
 
-            return res.status(200).json({
-                success: true,
-                message: 'Updated password',
-                data: updateUserPassword
+        const updatedUser = await User.findOneBy
+            ({
+                id: req.token.id
             })
+
+        return res.status(200).json
+        ({
+            success: true,
+            message: 'Password updated correctly',
+            data: updatedUser
+        })
 
     } catch (error) {
         return res.status(500).json
-            ({
-                success: false,
-                message: 'Password cannot be updated',
-                error: error
-            })
+        ({
+            success: false,
+            message: 'Failed to update password',
+            error: error
+        })
     }
 }
 
@@ -443,7 +447,7 @@ const getAppointmentByUser = async (req: Request, res: Response) => {
                     message: 'User not found'
                 })
         }
-        
+
         const userAppointment = await Appointment.find
             ({
                 where: { user_id: id },
@@ -457,7 +461,7 @@ const getAppointmentByUser = async (req: Request, res: Response) => {
                     ],
                 //relations: ['appointments']
             })
-            
+
         const exercises = await AppointmentExercise.find
             ({
                 where: { appointment_id: id },

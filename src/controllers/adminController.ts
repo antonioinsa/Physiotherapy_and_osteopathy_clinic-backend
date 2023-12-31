@@ -8,7 +8,7 @@ import {
 } from '../validations/validations'
 import { Appointment } from '../models/Appointment'
 import { Exercise } from '../models/Exercise'
-import { AppointmentExercise } from '../models/AppointmentExercise'
+//import { AppointmentExercise } from '../models/AppointmentExercise'
 
 
 const updateWorkerById = async (req: Request, res: Response) => {

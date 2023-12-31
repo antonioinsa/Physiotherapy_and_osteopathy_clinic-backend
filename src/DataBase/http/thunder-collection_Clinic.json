@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Clinic",
-    "dateExported": "2023-12-24T03:01:41.593Z",
+    "dateExported": "2023-12-30T17:34:49.080Z",
     "version": "1.1",
     "folders": [
         {
@@ -55,12 +55,12 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2023-12-09T22:51:04.584Z",
-            "modified": "2023-12-20T22:43:33.783Z",
+            "modified": "2023-12-27T17:39:22.212Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"jpolkinhorn3@google.com.hk\",\n  \"password\": \"aA@1234\"\n}",
+                "raw": "{\n  \"email\": \"osumbler2@fastcompany.com\",\n  \"password\": \"aA@1234\"\n}",
                 "form": []
             },
             "tests": []
@@ -115,12 +115,12 @@
             "method": "DELETE",
             "sortNum": 50000,
             "created": "2023-12-10T19:41:04.632Z",
-            "modified": "2023-12-11T07:08:58.278Z",
+            "modified": "2023-12-27T01:43:25.584Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJnc2ltb25vbnNreTRAZWxwYWlzLmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAyMjc2MzY0LCJleHAiOjE3MDIyOTA3NjR9.KuI3ydAlQSP5uqAhUU-0YciHjaiy29g8VDRkAkj0ASg"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImVtYWlsIjoiam9zZUBqb3NlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAzNjQxMzg0LCJleHAiOjE3MDM2NTU3ODR9.fhd-Bqy7jydXmLFsSFvZnKoR-HTcWVSFzLedJKs9nbQ"
             },
             "tests": []
         },
@@ -129,16 +129,16 @@
             "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
             "containerId": "50523634-c4e4-4a5c-9faa-7a5e48d1857d",
             "name": "Delete every User by params",
-            "url": "localhost:3000/sa/delete/6",
+            "url": "localhost:3000/delete/12",
             "method": "DELETE",
             "sortNum": 60000,
             "created": "2023-12-11T09:48:41.782Z",
-            "modified": "2023-12-11T09:48:41.782Z",
+            "modified": "2023-12-28T00:14:16.416Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJnc2ltb25vbnNreTRAZWxwYWlzLmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAyMjg3ODg0LCJleHAiOjE3MDIzMDIyODR9.WEHQ2ZqMG-iB4uM0T3FUCQ4ayTcidjaLKHfDkk06IMc"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImVtYWlsIjoib3N1bWJsZXIyQGZhc3Rjb21wYW55LmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAzNzIyNDE1LCJleHAiOjE3MDM3MzY4MTV9.cx02uNMgx9lsNr148CxySU8f_SjQneiKPzQhkR0ZI2c"
             },
             "tests": []
         },
@@ -151,17 +151,17 @@
             "method": "PUT",
             "sortNum": 70000,
             "created": "2023-12-11T12:14:52.080Z",
-            "modified": "2023-12-11T14:21:00.097Z",
+            "modified": "2023-12-28T13:14:27.129Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n    \"id\": 3,\n    \"role\": \"user\"\n}",
+                "raw": "{\n    \"id\": 6,\n    \"role\": \"user\"\n}",
                 "form": []
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJnc2ltb25vbnNreTRAZWxwYWlzLmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAyMjk2MTMyLCJleHAiOjE3MDIzMTA1MzJ9.VPtkWhKFELQZDhegsHdhj1qFH4g4ixRcy5zbLU7OOXQ"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImVtYWlsIjoib3N1bWJsZXIyQGZhc3Rjb21wYW55LmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAzNzY2Njc5LCJleHAiOjE3MDM3ODEwNzl9.Ilf6DuvsvUmdBAZ5i4o6E-ARtTfbF-5-S-vigmj7V9Y"
             },
             "tests": []
         },
@@ -216,16 +216,16 @@
             "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
             "containerId": "e512ba4e-aca5-45ed-8598-4d959ebad286",
             "name": "Delete Appointment",
-            "url": "localhost:3000/deleteAppointment/5",
+            "url": "localhost:3000/deleteAppointment/53",
             "method": "DELETE",
             "sortNum": 100000,
             "created": "2023-12-12T17:12:01.823Z",
-            "modified": "2023-12-12T17:12:01.823Z",
+            "modified": "2023-12-26T23:41:57.464Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJjYXJsYUBjYXJsYS5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcwMjM5NTAxMCwiZXhwIjoxNzAyNDA5NDEwfQ.1in2PU7qhm0SCfKd_pJpMxpUvovwtltEmjaZCceL4Fg"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiam9pbnNvbjJAZWQuZ292Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDM2MzQxMDMsImV4cCI6MTcwMzY0ODUwM30.-H7N9caUrd1Xtwo-POBNUtPvDdLzHoqxRD5HQZsAg78"
             },
             "tests": []
         },
@@ -407,20 +407,20 @@
             "containerId": "e512ba4e-aca5-45ed-8598-4d959ebad286",
             "name": "Update Password",
             "url": "localhost:3000/updatePassword",
-            "method": "PUT",
+            "method": "POST",
             "sortNum": 200000,
             "created": "2023-12-18T21:51:12.176Z",
-            "modified": "2023-12-18T21:51:12.176Z",
+            "modified": "2023-12-26T16:32:03.134Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"password\":\"aA@1234\"\n}",
+                "raw": "{\n  \"id\": 4,\n  \"password\":\"AaA@1234\"\n}",
                 "form": []
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZW1haWwiOiJoZWFzc29uOEB0b3BsaXN0LmN6Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDI5MzYwOTUsImV4cCI6MTcwMjk1MDQ5NX0.qwDoVShPpFYz04x48nGmf2G0RGJ3IJP-59H9xGfzbJI"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJqcG9sa2luaG9ybjNAZ29vZ2xlLmNvbS5oayIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAzNjA4MjY5LCJleHAiOjE3MDM2MjI2Njl9.LKTZw1CfgjAYo56nEO-U8tQTnCHsdpfy9rfdk1rMrvA"
             },
             "tests": []
         },
@@ -439,6 +439,65 @@
             "auth": {
                 "type": "bearer",
                 "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImVtYWlsIjoib3N1bWJsZXIyQGZhc3Rjb21wYW55LmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAzMDg2MDc2LCJleHAiOjE3MDMxMDA0NzZ9.p53CaSkiKv9oSLZIouDOOrebV9aGALu7Mr5e8VCtNI8"
+            },
+            "tests": []
+        },
+        {
+            "_id": "dd4dffd3-12ab-40ad-b70d-5fc2e836bc50",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "50523634-c4e4-4a5c-9faa-7a5e48d1857d",
+            "name": "All Workers",
+            "url": "localhost:3000/allWorkers",
+            "method": "GET",
+            "sortNum": 220000,
+            "created": "2023-12-27T17:42:44.675Z",
+            "modified": "2023-12-28T00:31:28.830Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImVtYWlsIjoib3N1bWJsZXIyQGZhc3Rjb21wYW55LmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAzNjk4NzYyLCJleHAiOjE3MDM3MTMxNjJ9.e1VRyHxKAWYpFwoNaAEy-KixBpEgjVzctHiXMSRgWq8"
+            },
+            "tests": []
+        },
+        {
+            "_id": "3c8a0962-9caf-49b7-819d-387fa3a22103",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "50523634-c4e4-4a5c-9faa-7a5e48d1857d",
+            "name": "All Users",
+            "url": "localhost:3000/allUsers",
+            "method": "GET",
+            "sortNum": 230000,
+            "created": "2023-12-28T11:36:39.868Z",
+            "modified": "2023-12-28T11:36:39.868Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImVtYWlsIjoib3N1bWJsZXIyQGZhc3Rjb21wYW55LmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAzNzYzMzEyLCJleHAiOjE3MDM3Nzc3MTJ9.PCSlc9Yj-_-tNHuhJOAe7RX_BvtGkAZzBX_s2mfeZqc"
+            },
+            "tests": []
+        },
+        {
+            "_id": "53606cbc-bb30-4c07-9e46-c30fd190ebc8",
+            "colId": "631d584d-030f-41b2-b6c7-dd1720a2d130",
+            "containerId": "50523634-c4e4-4a5c-9faa-7a5e48d1857d",
+            "name": "Update User",
+            "url": "localhost:3000/updateUser",
+            "method": "PUT",
+            "sortNum": 240000,
+            "created": "2023-12-28T12:53:58.258Z",
+            "modified": "2023-12-28T12:53:58.258Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":11,\n  \"name\":\"Derek\",\n  \"lastName\":\"Molen\",\n  \"phone\":\"744961486\",\n  \"email\":\"dmolen5@acquirethisname.com\",\n  \"documentId\":\"72985457V\",\n  \"street\":\"Orin Junction\",\n  \"door\":80,\n  \"zipCode\":\"54473\",\n  \"town\":\"Santa Cruz De Tenerife\",\n  \"country\":\"Spain\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImVtYWlsIjoib3N1bWJsZXIyQGZhc3Rjb21wYW55LmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzAzNzY2Njc5LCJleHAiOjE3MDM3ODEwNzl9.Ilf6DuvsvUmdBAZ5i4o6E-ARtTfbF-5-S-vigmj7V9Y"
             },
             "tests": []
         }
